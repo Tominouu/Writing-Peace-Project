@@ -50,7 +50,7 @@
     </div>
     
     <div class="image-container">
-        <img src="path-to-your-image.jpg" alt="Peace in Different Languages" class="logo-image">
+        <img src="assets/img/writing-peace.png" alt="Peace in Different Languages" class="logo-image">
     </div>
 </body>
 </html>
