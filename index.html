@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page d'inscription</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            display: flex;
+            min-height: 100vh;
+        }
+        
+        .left-section {
+            flex: 1;
+            background-color: #2b6cb0;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            clip-path: polygon(0 0, 100% 0, 85% 100%, 0 100%);
+        }
+        
+        .peace-words {
+            position: relative;
+            width: 80%;
+            height: 80%;
+        }
+        
+        .peace-word {
+            position: absolute;
+            background-color: #f8f9fa;
+            padding: 8px 16px;
+            border-radius: 25px;
+            color: #333;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        
+        .peace-word:nth-child(1) { top: 20%; left: 25%; background-color: #FFC107; }
+        .peace-word:nth-child(2) { top: 10%; left: 40%; background-color: #F44336; }
+        .peace-word:nth-child(3) { top: 15%; left: 55%; background-color: #2196F3; }
+        .peace-word:nth-child(4) { top: 30%; left: 15%; background-color: #FF9800; }
+        .peace-word:nth-child(5) { top: 35%; left: 60%; background-color: #FF5722; }
+        .peace-word:nth-child(6) { top: 45%; left: 30%; background-color: #4CAF50; }
+        .peace-word:nth-child(7) { top: 55%; left: 20%; background-color: #E91E63; }
+        .peace-word:nth-child(8) { top: 60%; left: 50%; background-color: #9C27B0; }
+        .peace-word:nth-child(9) { top: 70%; left: 35%; background-color: #00BCD4; }
+        .peace-word:nth-child(10) { top: 25%; left: 70%; background-color: #CDDC39; }
+        .peace-word:nth-child(11) { top: 75%; left: 60%; background-color: #795548; }
+        .peace-word:nth-child(12) { top: 40%; left: 45%; background-color: #607D8B; font-size: 20px; }
+        .peace-word:nth-child(13) { top: 50%; left: 65%; background-color: #8BC34A; }
+        .peace-word:nth-child(14) { top: 65%; left: 10%; background-color: #03A9F4; }
+        .peace-word:nth-child(15) { top: 5%; left: 15%; background-color: #FF5252; }
+        .peace-word:nth-child(16) { top: 80%; left: 25%; background-color: #673AB7; }
+        .peace-word:nth-child(17) { top: 85%; left: 45%; background-color: #009688; }
+        .peace-word:nth-child(18) { top: 20%; left: 5%; background-color: #FFA000; }
+        
+        .right-section {
+            flex: 1;
+            background-color: #90caf9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+        }
+        
+        .signup-form {
+            background-color: transparent;
+            width: 100%;
+            max-width: 450px;
+            padding: 20px;
+        }
+        
+        .signup-form h1 {
+            margin-bottom: 40px;
+            color: #1a202c;
+            font-size: 36px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #1a202c;
+            font-weight: 500;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #e2e8f0;
+            border-radius: 4px;
+            background-color: white;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .checkbox-group input {
+            margin-right: 10px;
+        }
+        
+        .signup-btn {
+            width: 100%;
+            padding: 14px;
+            background-color: #1a73e8;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            margin-bottom: 30px;
+        }
+        
+        .social-login {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .social-btn {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        
+        .divider {
+            position: relative;
+            height: 1px;
+            background-color: #e2e8f0;
+            margin: 40px 0;
+        }
+        
+        .login-link {
+            text-align: center;
+            color: #1a202c;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+            
+            .left-section {
+                display: none;
+            }
+            
+            .right-section {
+                padding: 20px;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="left-section">
+        <div class="peace-words">
+            <div class="peace-word">和平</div>
+            <div class="peace-word">សន្តិភាព</div>
+            <div class="peace-word">שלום</div>
+            <div class="peace-word">शांति</div>
+            <div class="peace-word">мир</div>
+            <div class="peace-word">paz</div>
+            <div class="peace-word">평화</div>
+            <div class="peace-word">خاشلىق</div>
+            <div class="peace-word">ειρήνη</div>
+            <div class="peace-word">Writing Peace</div>
+            <div class="peace-word">მშვიდობა</div>
+            <div class="peace-word">سلام</div>
+            <div class="peace-word">ሰላም</div>
+            <div class="peace-word">สันติภาพ</div>
+            <div class="peace-word">PAX</div>
+            <div class="peace-word">خاشلىق</div>
+            <div class="peace-word">Hòa Bình</div>
+            <div class="peace-word">平和</div>
+        </div>
+    </div>
+    <div class="right-section">
+        <div class="signup-form">
+            <h1>Sign Up</h1>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input type="text" id="firstName" placeholder="Placeholder">
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" id="lastName" placeholder="Placeholder">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Placeholder">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Placeholder">
+            </div>
+            <div class="checkbox-group">
+                <input type="checkbox" id="terms">
+                <label for="terms">Vestibulum faucibus odio vitae arcu auctor lectus.</label>
+            </div>
+            <button class="signup-btn">Button Text</button>
+            <div class="social-login">
+                <button class="social-btn">
+                    <img src="/api/placeholder/20/20" alt="Google logo" style="margin-right: 10px;">
+                    Log in with Google
+                </button>
+                <button class="social-btn">
+                    <img src="/api/placeholder/20/20" alt="Apple logo" style="margin-right: 10px;">
+                    Log in with Apple
+                </button>
+            </div>
+            <div class="divider"></div>
+            <p class="login-link">Already have an account?</p>
+        </div>
+    </div>
+</body>
+</html>

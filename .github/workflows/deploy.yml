@@ -18,6 +18,6 @@ jobs:
         with:
           server: ftpupload.net
           username: ${{ secrets.FTP_USERNAME }} 
-          password: ${{ secrets.FTP_PASSWORD }}  
+          password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./
           server-dir: /tominou.tech/htdocs/
