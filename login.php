@@ -44,7 +44,7 @@
             <div class="divider"></div>
             
             <div class="signup-link">
-                No account yet? <a href="#">Sign Up</a>
+                No account yet? <a href="index.php">Sign Up</a>
             </div>
         </div>
     </div>
