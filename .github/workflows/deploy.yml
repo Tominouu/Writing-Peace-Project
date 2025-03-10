@@ -1,0 +1,23 @@
+name: Deploy to InfinityFree
+
+on:
+  push:
+    branches:
+      - main  # Change ici si ton site est sur une autre branche
+
+jobs:
+  ftp-deploy:
+    name: Upload via FTP
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Deploy files via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4
+        with:
+          server: ftpupload.net
+          username: ${{ secrets.if0_38235449 }}
+          password: ${{ secrets.tnhYpiqFSr0s }}
+          local-dir: ./
+          server-dir: /htdocs/
