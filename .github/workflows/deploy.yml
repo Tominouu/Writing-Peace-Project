@@ -17,7 +17,7 @@ jobs:
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: ftpupload.net
-          username: ${{ secrets.FTP_USERNAME }}  # Assure-toi que c'est bien référencé comme ça
-          password: ${{ secrets.FTP_PASSWORD }}  # Pareil pour le mot de passe
+          username: ${{ secrets.FTP_USERNAME }} 
+          password: ${{ secrets.FTP_PASSWORD }}  
           local-dir: ./
           server-dir: /tominou.tech/htdocs/
