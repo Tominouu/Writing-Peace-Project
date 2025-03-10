@@ -56,7 +56,7 @@
                 </button>
             </div>
             <div class="divider"></div>
-            <p class="login-link">Already have an account?</p>
+            <a href="login.php" class="login-link">Already have an account?</a>
         </div>
     </div>
 </body>
