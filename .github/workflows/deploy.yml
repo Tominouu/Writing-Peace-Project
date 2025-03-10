@@ -20,4 +20,4 @@ jobs:
           username: ${{ secrets.if0_38235449 }}
           password: ${{ secrets.tnhYpiqFSr0s }}
           local-dir: ./
-          server-dir: /htdocs/
+          server-dir: /tominou/htdocs/
