@@ -1,0 +1,15 @@
+.env
+
+*.log
+
+cache/
+sessions/
+
+.vscode/
+.idea/
+.DS_Store
+
+/vendor/
+
+*.bak
+*.swp
