@@ -1,3 +1,29 @@
+<?php
+require_once 'config.php';
+
+header('Content-Type: application/json');
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $email = $_POST['email'] ?? '';
+    $password = $_POST['password'] ?? '';
+
+    if (!$email || !$password) {
+        echo json_encode(['status' => false, 'message' => 'Email et mot de passe requis']);
+        exit();
+    }
+
+    // Vérifier l'utilisateur
+    $stmt = $pdo->prepare("SELECT id, username, password_hash FROM users WHERE email = ?");
+    $stmt->execute([$email]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($user && password_verify($password, $user['password_hash'])) {
+        echo json_encode(['status' => true, 'message' => 'Connexion réussie', 'user' => $user['username']]);
+    } else {
+        echo json_encode(['status' => false, 'message' => 'Identifiants incorrects']);
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
