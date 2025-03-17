@@ -25,7 +25,7 @@ function getQuestion($pdo) {
 }
 
 // Vérifier si une réponse a été soumise
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['answer'])) {
     $userAnswer = $_POST["answer"];
     $correctAnswer = $_POST["correct_answer"];
 
@@ -37,19 +37,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $message = "❌ Mauvaise réponse ! La bonne réponse était : $correctAnswer";
         $_SESSION["answered"] = true; // Marquer la question comme répondue même si la réponse est fausse
     }
-} elseif (!isset($_SESSION["answered"])) {
-    $_SESSION["answered"] = false;  // Si aucune question n'a encore été répondue
+}
+
+// Si on clique sur "Passer à la question suivante", réinitialiser l'état de la question
+if (isset($_POST["next_question"])) {
+    $_SESSION["answered"] = false;  // Réinitialiser l'état de la question
+    $_SESSION["question"] = getQuestion($pdo);  // Récupérer une nouvelle question et la stocker dans la session
 }
 
 // Vérifier si on a une question en session, sinon on récupère une nouvelle question
 if (!isset($_SESSION["question"])) {
-    $_SESSION["question"] = getQuestion($pdo);  // On met une question dans la session
-}
-
-// Si l'utilisateur passe à la question suivante, on réinitialise l'état
-if (isset($_POST["next_question"])) {
-    $_SESSION["answered"] = false;
-    $_SESSION["question"] = getQuestion($pdo);
+    $_SESSION["question"] = getQuestion($pdo);  // Si aucune question en session, récupérer une nouvelle question
 }
 
 ?>
@@ -85,7 +83,10 @@ if (isset($_POST["next_question"])) {
             <input type="hidden" name="correct_answer" value="<?= $_SESSION["question"]['correct'] ?>">
         </form>
     <?php else: ?>
-        <p><a href="solo.php" class="btn">Passer à la question suivante</a></p>
+        <!-- Afficher le bouton pour passer à la question suivante -->
+        <form method="post">
+            <button type="submit" name="next_question" class="btn">Passer à la question suivante</button>
+        </form>
     <?php endif; ?>
 
 </body>
