@@ -18,7 +18,7 @@ main .container-Txt {
     width: 100%;
     background-color: white;
     border-radius: 1.5vw;
-    padding: 2vw 4vw 3vw 4vw;
+    padding: 2vw 3vw 3vw 3vw;
     font-size: 1vw !important;
 }
 
@@ -77,11 +77,13 @@ main .bottom {
     width: 100%;
     display: flex;
     flex-direction: row;
+    gap: 2vw;
 }
 .container-Player .bottom .other-Player {
     width: 100%;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     gap: 2vw;
 }
 .container-Player .bottom img {
@@ -96,7 +98,7 @@ main .bottom {
     justify-content: center;
     align-items: center;
     gap: 0.2vw;
-    padding: 0.5vw 0;
+    padding: 0.7vw 0;
 }
 h3 {
     font-size: 1.5vw;

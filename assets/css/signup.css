@@ -6,13 +6,13 @@ main {
     justify-content: flex-end;
 }
 h2 {
-    font-size: 1.5vw;
+    font-size: 1.3vw;
     color: white;
 }
 
 
 .signup-container {
-    width: auto;
+    width: 34vw;
     height: auto;
     padding: 3vw 3vw;
     border-radius: 2vw;
@@ -21,6 +21,7 @@ h2 {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 2vw;
 }
 
 .signup-title {
@@ -39,7 +40,6 @@ h2 {
     display: flex;
     justify-content: space-between;
     gap: 1vw;
-    margin-bottom: 2vh;
 }
 
 .input-group input {
@@ -50,7 +50,7 @@ h2 {
     width: 100%;
     padding: 1.5vh 1vw;
     margin-bottom: 2vh;
-    border-radius: 1vw;
+    border-radius: 0.7vw;
     border: 0.2vw solid #3e67ab;
     outline: none;
     font-size: 1.8vh;
@@ -64,13 +64,14 @@ h2 {
     font-size: 2vh;
     font-weight: bold;
     border: 0.2vw solid #ffffff;
-    border-radius: 1vw;
+    border-radius: 0.7vw;
     cursor: pointer;
     margin-top: 2vh;
+    margin-top: 2vw;
 }
 
 .submit-btn:hover {
-    background: #ddd;
+    background: #4c74b6;
 }
 
 .login-text {
@@ -93,7 +94,7 @@ h2 {
 .input-group-collumn {
     display: flex;
     flex-direction: column;
-    gap: 1vw;
+    gap: 0.5vw;
 }
 .icons-arrow {
     width: 2vw;
