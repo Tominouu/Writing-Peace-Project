@@ -13,6 +13,7 @@ try {
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
         ]
     );
+    echo "Connexion réussie";
 } catch (PDOException $e) {
     die("Erreur de connexion : " . $e->getMessage());
 }
