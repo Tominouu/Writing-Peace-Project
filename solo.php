@@ -26,26 +26,32 @@ function getQuestion($pdo) {
 
 // Vérifier si une réponse a été soumise
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    if (isset($_SESSION["answered"]) && $_SESSION["answered"] === true) {
-        // Si la question a déjà été répondue, on ne fait rien
-        $message = "❌ Vous avez déjà répondu à cette question.";
-    } else {
-        $userAnswer = $_POST["answer"];
-        $correctAnswer = $_POST["correct_answer"];
+    $userAnswer = $_POST["answer"];
+    $correctAnswer = $_POST["correct_answer"];
 
-        if ($userAnswer === $correctAnswer) {
-            $_SESSION["score"] = ($_SESSION["score"] ?? 0) + 1;
-            $_SESSION["answered"] = true;  // Marquer la question comme répondue
-            $message = "✅ Bonne réponse !";
-        } else {
-            $message = "❌ Mauvaise réponse ! La bonne réponse était : $correctAnswer";
-            $_SESSION["answered"] = true;  // Marquer la question comme répondue même si la réponse est fausse
-        }
+    if ($userAnswer === $correctAnswer) {
+        $_SESSION["score"] = ($_SESSION["score"] ?? 0) + 1;
+        $_SESSION["answered"] = true; // Marquer la question comme répondue
+        $message = "✅ Bonne réponse !";
+    } else {
+        $message = "❌ Mauvaise réponse ! La bonne réponse était : $correctAnswer";
+        $_SESSION["answered"] = true; // Marquer la question comme répondue même si la réponse est fausse
     }
+} elseif (!isset($_SESSION["answered"])) {
+    $_SESSION["answered"] = false;  // Si aucune question n'a encore été répondue
 }
 
-// Récupérer une nouvelle question
-$questionData = getQuestion($pdo);
+// Vérifier si on a une question en session, sinon on récupère une nouvelle question
+if (!isset($_SESSION["question"])) {
+    $_SESSION["question"] = getQuestion($pdo);  // On met une question dans la session
+}
+
+// Si l'utilisateur passe à la question suivante, on réinitialise l'état
+if (isset($_POST["next_question"])) {
+    $_SESSION["answered"] = false;
+    $_SESSION["question"] = getQuestion($pdo);
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -68,17 +74,18 @@ $questionData = getQuestion($pdo);
     <?php if (isset($message)) echo "<p>$message</p>"; ?>
 
     <p><strong>Quelle est la langue de cette phrase ?</strong></p>
-    <p style="font-size: 24px; font-weight: bold;">"<?= $questionData['phrase'] ?>"</p>
+    <p style="font-size: 24px; font-weight: bold;">"<?= $_SESSION["question"]['phrase'] ?>"</p>
 
-    <?php if (!isset($_SESSION["answered"]) || $_SESSION["answered"] === false): ?>
+    <?php if (!$_SESSION["answered"]): ?>
+        <!-- Afficher les options de réponse -->
         <form method="post">
-            <?php foreach ($questionData["choices"] as $choice): ?>
+            <?php foreach ($_SESSION["question"]["choices"] as $choice): ?>
                 <button type="submit" name="answer" value="<?= $choice ?>" class="btn"><?= $choice ?></button>
             <?php endforeach; ?>
-            <input type="hidden" name="correct_answer" value="<?= $questionData['correct'] ?>">
+            <input type="hidden" name="correct_answer" value="<?= $_SESSION["question"]['correct'] ?>">
         </form>
     <?php else: ?>
-        <p><a href="solo.php">Passer à la question suivante</a></p>
+        <p><a href="solo.php" class="btn">Passer à la question suivante</a></p>
     <?php endif; ?>
 
 </body>
