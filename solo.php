@@ -26,15 +26,21 @@ function getQuestion($pdo) {
 
 // Vérifier si une réponse a été soumise
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $userAnswer = $_POST["answer"];
-    $correctAnswer = $_POST["correct_answer"];
-
-    if ($userAnswer === $correctAnswer) {
-        $_SESSION["score"] = ($_SESSION["score"] ?? 0) + 1;
-        $message = "✅ Bonne réponse !";
+    if (isset($_SESSION["answered"]) && $_SESSION["answered"] === true) {
+        // Si la question a déjà été répondue, on ne fait rien
+        $message = "❌ Vous avez déjà répondu à cette question.";
     } else {
-        $message = "❌ Mauvaise réponse ! La bonne réponse était : $correctAnswer";
-        $_SESSION["score"] = 0; // Réinitialisation du score
+        $userAnswer = $_POST["answer"];
+        $correctAnswer = $_POST["correct_answer"];
+
+        if ($userAnswer === $correctAnswer) {
+            $_SESSION["score"] = ($_SESSION["score"] ?? 0) + 1;
+            $_SESSION["answered"] = true;  // Marquer la question comme répondue
+            $message = "✅ Bonne réponse !";
+        } else {
+            $message = "❌ Mauvaise réponse ! La bonne réponse était : $correctAnswer";
+            $_SESSION["answered"] = true;  // Marquer la question comme répondue même si la réponse est fausse
+        }
     }
 }
 
@@ -64,12 +70,16 @@ $questionData = getQuestion($pdo);
     <p><strong>Quelle est la langue de cette phrase ?</strong></p>
     <p style="font-size: 24px; font-weight: bold;">"<?= $questionData['phrase'] ?>"</p>
 
-    <form method="post">
-        <?php foreach ($questionData["choices"] as $choice): ?>
-            <button type="submit" name="answer" value="<?= $choice ?>" class="btn"><?= $choice ?></button>
-        <?php endforeach; ?>
-        <input type="hidden" name="correct_answer" value="<?= $questionData['correct'] ?>">
-    </form>
+    <?php if (!isset($_SESSION["answered"]) || $_SESSION["answered"] === false): ?>
+        <form method="post">
+            <?php foreach ($questionData["choices"] as $choice): ?>
+                <button type="submit" name="answer" value="<?= $choice ?>" class="btn"><?= $choice ?></button>
+            <?php endforeach; ?>
+            <input type="hidden" name="correct_answer" value="<?= $questionData['correct'] ?>">
+        </form>
+    <?php else: ?>
+        <p><a href="solo.php">Passer à la question suivante</a></p>
+    <?php endif; ?>
 
 </body>
 </html>
