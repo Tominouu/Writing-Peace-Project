@@ -53,6 +53,7 @@ if (!isset($_SESSION['user_id'])) {
     <div class="container">
         <a href="solo.php" class="btn">Mode Solo</a>
         <a href="multijoueur.php" class="btn">Mode Multijoueur</a>
+        <a href="logout.php" class="logout">Déconnexion</a>
     </div>
 
 </body>
