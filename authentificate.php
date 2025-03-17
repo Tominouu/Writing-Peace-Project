@@ -20,6 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $_SESSION['username'] = $username;
         header("Location: index.php");
         echo "Connexion réussie. <a href='dashboard.php'>Accéder au tableau de bord</a>";
+        
     } else {
         echo "Identifiants incorrects.";
     }
