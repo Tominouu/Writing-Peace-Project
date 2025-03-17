@@ -4,6 +4,8 @@ require_once 'config.php';
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $username = trim($_POST['username']);
     $password = $_POST['password'];
+    $email = $_POST['email'];
+
 
     if (empty($username) || empty($password)) {
         die("Tous les champs sont obligatoires.");
@@ -30,7 +32,24 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 ?>
 
 <form method="POST">
-    <input type="text" name="username" placeholder="Nom d'utilisateur" required>
-    <input type="password" name="password" placeholder="Mot de passe" required>
-    <button type="submit">Créer un compte</button>
+<div class="form-row">
+                <div class="form-group">
+                    <label for="username">Nom d'utilisateur</label>
+                    <input type="text" name="username" placeholder="Placeholder">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" name="email" placeholder="Placeholder">
+            </div>
+            <div class="form-group">
+                <label for="password">Mot de passe</label>
+                <input type="password" name="password" placeholder="Placeholder">
+            </div>
+            <div class="checkbox-group">
+                <input type="checkbox" name="terms">
+                <label for="terms">Vestibulum faucibus odio vitae arcu auctor lectus.</label>
+            </div>
+            <button type="submit">Créer un compte</button>
+</div>
 </form>
