@@ -5,8 +5,9 @@ require_once 'config.php';
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $username = trim($_POST['username']);
     $password = $_POST['password'];
+    $email = $_POST['email'];
 
-    if (empty($username) || empty($password)) {
+    if (empty($username) || empty($password) || empty($email)) {
         die("Tous les champs sont obligatoires.");
     }
 

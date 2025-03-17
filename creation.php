@@ -7,7 +7,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $email = $_POST['email'];
 
 
-    if (empty($username) || empty($password)) {
+
+    if (empty($username) || empty($password) || empty($email)) {
         die("Tous les champs sont obligatoires.");
     }
 
@@ -18,12 +19,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         die("Nom d'utilisateur déjà pris.");
     }
 
-    // Hasher le mot de passe
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-    // Insérer dans la base de données
-    $stmt = $pdo->prepare("INSERT INTO users (username, password) VALUES (?, ?)");
-    if ($stmt->execute([$username, $hashedPassword])) {
+    $stmt = $pdo->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
+    if ($stmt->execute([$username, $email, $hashedPassword])) {
         echo "Compte créé avec succès. <a href='authentificate.php'>Se connecter</a>";
     } else {
         echo "Erreur lors de la création du compte.";
@@ -35,20 +34,20 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <div class="form-row">
                 <div class="form-group">
                     <label for="username">Nom d'utilisateur</label>
-                    <input type="text" name="username" placeholder="Placeholder">
+                    <input type="text" name="username" placeholder="Placeholder" required>
                 </div>
             </div>
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" name="email" placeholder="Placeholder">
+                <input type="email" name="email" placeholder="Placeholder" required>
             </div>
             <div class="form-group">
                 <label for="password">Mot de passe</label>
-                <input type="password" name="password" placeholder="Placeholder">
+                <input type="password" name="password" placeholder="Placeholder" required>
             </div>
             <div class="checkbox-group">
                 <input type="checkbox" name="terms">
-                <label for="terms">Vestibulum faucibus odio vitae arcu auctor lectus.</label>
+                <label for="terms">J'accepte les conditions d'utilisations afin de créer un compte</label required>
             </div>
             <button type="submit">Créer un compte</button>
 </div>
