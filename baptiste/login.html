@@ -1,57 +1,71 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Log In</title>
-    <link rel="stylesheet" href="assets/css/login.css">
+    <title>Page d'inscription</title>
+    <link rel="stylesheet" href="../assets/css/all.css">
+    <link rel="stylesheet" href="../assets/css/signup.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="login-container">
-        <div class="login-form">
-            <h1 class="login-title">Log In</h1>
-            
-            <div class="form-group">
-                <label for="email">Email Address</label>
-                <input type="email" id="email" placeholder="Placeholder">
-            </div>
-            
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" placeholder="Placeholder">
-                <div class="password-hint">It must be a combination of minimum 8 letters, numbers, and symbols.</div>
-            </div>
-            
-            <div class="form-options">
-                <div class="remember-me">
-                    <input type="checkbox" id="remember">
-                    <label for="remember">Remember me</label>
-                </div>
-                <a href="#" class="forgot-password">Forgot Password?</a>
-            </div>
-            
-            <button class="login-button">Log In</button>
-            
-            <div class="social-login">
-                <button class="social-button">
-                    <span>Log in with Google</span>
-                </button>
-                <button class="social-button">
-                    <span>Log in with Apple</span>
-                </button>
-            </div>
-            
-            <div class="divider"></div>
-            
-            <div class="signup-link">
-                No account yet? <a href="index.php">Sign Up</a>
-            </div>
+    <div class="left-section">
+        <div class="logo-container">
+            <a href="index.html">
+                <img src="../assets/img/logo.png" alt="Logo Peace Words" class="logo">
+            </a>
         </div>
     </div>
-    
-    <div class="image-container">
-        <img src="assets/img/writing-peace.png" alt="Peace in Different Languages" class="logo-image">
+    <div class="right-section">
+        <header>
+            <div class="icons-home">
+                <a href="index.html">
+                    <img src="../assets/img/icons-home.png" alt="Home Icon">
+                </a>
+            </div>
+            <div class="connect">
+                <a href="login.html">
+                    <button class="login"><h3>Log in</h3></button>
+                </a>
+                <a href="signup.html">
+                    <button class="signup"><h3>Sign up</h3></button>
+                </a>
+            </div>
+        </header>
+        <main>
+            <h1 class="signup-title">Sign Up</h1>
+            <div class="signup-container">
+                <form class="signup-form">
+                    <div class="input-group">
+                        <div class="input-group-collumn">
+                            <h2>First Name</h2>
+                            <input type="text" placeholder="Bob" required>
+                        </div>
+                        <div class="input-group-collumn">
+                            <h2>Username</h2>
+                            <input type="text" placeholder="bobdu72xXxl@Mu€rt€" required>
+                        </div>
+                    </div>
+                    <div class="input-group-collumn">
+                        <h2>Email</h2>
+                        <input type="email" placeholder="exemple@gmail.com" required>
+                    </div>
+                    <div class="input-group-collumn">
+                        <h2>Password</h2>
+                        <input type="password" placeholder="..." required>
+                    </div>
+                    <button type="submit" class="submit-btn">SUBMIT</button>
+                </form>
+                <div class="login-text">
+                    <p>Have an account ?</p>
+                    <a href="login.html">
+                        <img src="../assets/img/icons-arrow.png" class="icons-arrow">
+                    </a>
+                </div>
+            </div>
+        </main>
     </div>
 </body>
 </html>

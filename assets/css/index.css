@@ -1,23 +1,4 @@
-header {
-    position: relative;
-    display: flex;
-    justify-content: flex-end;
-    padding: 1vw;
-    background-color: #3969B1;
-    color: white;
-    text-align: center;
-    align-items: center;
-    border-radius: 0 0 0 1vw;
-    gap: 2vw;
-    font-family: "Roboto", sans-serif;
-}
 
-header .logo img {
-    width: 4vw;
-    height: 4vw;
-    display: flex;
-    align-items: center;
-}
 
 main {
     display: flex;
@@ -43,7 +24,7 @@ main .container-Txt {
 
 main .container-Txt h1 {
     font-size: 2.6vw !important;
-    color: #3969B1;
+    color: #3e67ab;
     text-align: center;
 }
 main h1 {
@@ -52,15 +33,7 @@ main h1 {
     text-align: center;
 }
 
-.icons-arrow, .icons-nut {
-    width: 3vw;
-    height: 3vw;
-    cursor: pointer;
-}
-.icons-arrow:hover , .icons-nut:hover { /* Change la couleur */
-    transform: scale(1.1); /* Agrandit légèrement */
-    transition: all 0.1s ease;
-}
+
 .Play {
     position: relative;
     right: auto;
@@ -70,7 +43,7 @@ main h1 {
     margin: 0 auto;
     display: block;
     cursor: pointer;
-    background-color: #3969B1;
+    background-color: #3e67ab;
     border: 0.5vw solid #ffffff;
     border-radius: 1vw;
 }
@@ -146,6 +119,6 @@ h2 {
     align-items: center;
     gap: 0.2vw;
     border-radius: 2vw;
-    border: 0.2vw solid #3969B1;
+    border: 0.2vw solid #3e67ab;
     padding: 0.5vw 1vw;
 }

@@ -20,12 +20,13 @@ body {
     display: flex;
     min-height: 100vh;
     background-color: #4a90e2;
+    font-family: 'Roboto', sans-serif;
 }
 
 .left-section {
     width: 80vw;
     flex: 1;
-    background-color: #2b6cb0;
+    background-color: #3e67ab;
     position: relative;
     overflow: hidden;
     display: flex;
@@ -38,8 +39,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100vw;
-    height: 100vh;
+    margin-right: 10vw;
 }
 
 .right-section {
@@ -47,6 +47,7 @@ body {
     flex-direction: column;
     justify-content: space-between;
     width: 45vw;
+    height: 100vh;
     align-items: flex-end;
     margin: 0;
     padding: 0;
@@ -58,34 +59,71 @@ body {
     height: 7vh;
 }
 .signup {
-    background-color: #2b6cb0;
+    background-color: #3e67ab;
     color: white;
     padding: 0.5vw 1vw;   
     border: #FFFBE7 0.2vw solid;    
     border-radius: 2vw;
-    z-index: 1;
+    z-index: 100;
     cursor: pointer;
 }
 .login:hover {
-    background-color: #2b6cb0;
+    background-color: #3e67ab;
     color: white !important;; 
     border: #FFFBE7 0.2vw solid;    
 }
 .login {
-    margin-left: -3vw;
+    margin-right: -3vw;
     background-color: #ffffff;
-    color: #2b6cb0 !important;
+    color: #3e67ab!important;
     padding: 0.5vw 1vw;   
     border: #ffffff 0.2vw solid;    
     border-radius: 2vw;
     cursor: pointer;
-    color: #2b6cb0 !important;
+    color: #3e67ab !important;
 }
 .signup:hover {
     background-color: #ffffff;
-    color: #2b6cb0 !important;
-    border: #2b6cb0 0.2vw solid;    
+    color: #3e67ab !important;
+    border: #3e67ab 0.2vw solid;    
 }
 .login h3{
-    padding-left: 2vw;
+    padding-right: 2vw;
+}
+header {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    padding: 1vw;
+    background-color: #3e67ab;
+    color: white;
+    text-align: center;
+    align-items: center;
+    border-radius: 0 0 0 1vw;
+    gap: 2vw;
+    font-family: "Roboto", sans-serif;
+}
+
+header img {
+    width: 3vw;
+    height: 3vw;
+    display: flex;
+    align-items: center;
+}
+.icons-arrow, .icons-nut {
+    width: 3vw;
+    height: 3vw;
+    cursor: pointer;
+}
+
+.icons-arrow:hover , .icons-nut:hover , .icons-home:hover { /* Change la couleur */
+    transform: scale(1.1); /* Agrandit légèrement */
+    transition: all 0.1s ease;
+}
+.connect h3 {
+    font-size: 1vw;
+}
+.logo {
+    width: 30vw;
+    height: 30vw;
 }
