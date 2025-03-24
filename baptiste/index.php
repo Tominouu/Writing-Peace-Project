@@ -1,3 +1,17 @@
+<?php
+session_start();
+require_once 'config.php';
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: /baptiste/login.html");
+    exit();
+}
+
+$stmt = $pdo->prepare("SELECT username FROM users WHERE id = ?");
+$stmt->execute([$_SESSION['user_id']]);
+$user = $stmt->fetch();
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -21,7 +35,7 @@
     <div class="right-section">
         <header>
             <img src="../assets/img/player.png" alt="Logo Peace Words" >
-            <h3>Exemple pseudo </h3>
+            <h3><?php echo $user['username']; ?></h3>
             <div class="connect">
                 <a href="login.html">
                     <button class="login"><h3>Log in</h3></button>
