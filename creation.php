@@ -23,6 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $stmt = $pdo->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
     if ($stmt->execute([$username, $email, $hashedPassword])) {
+        header("Location: /baptiste/login.html");
         echo "Compte créé avec succès. <a href='authentificate.php'>Se connecter</a>";
     } else {
         echo "Erreur lors de la création du compte.";
