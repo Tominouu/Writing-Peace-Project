@@ -40,7 +40,7 @@ $user = $stmt->fetch();
                 <a href="login.php">
                     <button class="login"><h3>Log in</h3></button>
                 </a>
-                <a href="signup.html">
+                <a href="signup.php">
                     <button class="signup"><h3>Sign up</h3></button>
                 </a>
             </div>
