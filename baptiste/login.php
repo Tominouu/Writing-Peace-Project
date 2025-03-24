@@ -24,7 +24,7 @@
                 <img src="../assets/img/icons-home.png" alt="Home Icon"  class="icons-home">
             </a>
             <div class="connect">
-                <a href="login.html">
+                <a href="login.php">
                     <button class="login"><h3>Log in</h3></button>
                 </a>
                 <a href="signup.html">
