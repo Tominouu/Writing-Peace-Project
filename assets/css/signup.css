@@ -47,6 +47,7 @@ h2 {
 }
 
 .signup-form input {
+    height: 3vw;
     width: 100%;
     padding: 1.5vh 1vw;
     margin-bottom: 2vh;
