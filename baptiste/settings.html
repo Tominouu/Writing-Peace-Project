@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page d'inscription</title>
+    <link rel="stylesheet" href="../assets/css/all.css">
+    <link rel="stylesheet" href="../assets/css/settings.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+        <a href="index.html">
+            <img src="../assets/img/logo.png" alt="Logo Peace Words" class="logo">
+        </a>
+    <div class="left-section">
+
+    </div>
+    <div class="right-section">
+        <header>
+            <a href="index.html">
+                <img src="../assets/img/icons-home.png" alt="Home Icon"  class="icons-home">
+            </a>
+            <img src="../assets/img/player.png" alt="Logo Peace Words" >
+            <h3>Exemple pseudo </h3>
+            <div class="connect">
+                <a href="login.html">
+                    <button class="login"><h3>Log in</h3></button>
+                </a>
+                <a href="signup.html">
+                    <button class="signup"><h3>Sign up</h3></button>
+                </a>
+            </div>
+        </header>
+    </div>
+    <main>
+        <div class="allsettings">
+            <H1>SETTINGS</H1>
+            <div class="container">
+                <div class="part1">
+                    <h2>Langages</h2>
+                    <div class="language-selector" id="languageSelector">
+                        <span class="select" id="selectedLanguage"></span>
+                        <img class="arrow" src="../assets/img/icons-selec.png" alt="Flèche">
+                        <div class="options">
+                            <div data-lang="en"><span>ENGLISH</span></div>
+                            <div data-lang="fr"><span>FRANCAIS</span></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <HR>
+                <div class="part2">
+                    <h2>Sound Effects</h2>
+                    <div class="sound">
+                        <!--<audio id="audio" controls> 
+                            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+                            Votre navigateur ne supporte pas l'audio.
+                        </audio> -->
+
+                        <div class="slider-container">
+                            <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="1">
+                            <!-- <p class="volume-value">Volume : <span id="volume-label">100%</span></p> -->
+                        </div>
+                    </div>
+                </div>
+                <HR>
+                <div class="part3">
+                    <div class="part3top">
+                        <h2>Profils</h2>
+                        <button><h4>Disconnection</h4></button>
+                    </div>
+                    <div class="part3bottom">
+                        <div class="part3collumn">
+                            <div class="part3row">
+                                <h3>Name</h3>
+                                <input class="changeprofil" type="name" placeholder="name" width="10%">
+                            </div>
+                            <div class="part3row">
+                                <h3>Pseudo</h3>
+                                <input class="changeprofil" type="pseudo" placeholder="pseudo">
+                            </div>
+                        </div>
+                        <div class="part3collumn2">
+                            <div class="part3row">
+                                <h3>Email</h3>
+                                <input class="changeprofil" type="email" placeholder="email">
+                            </div>
+                            <div class="part3row">
+                                <h3>Passwords</h3>
+                                <input class="changeprofil" type="password" placeholder="password">
+                            </div>
+                        </div>
+                    </div>
+                    <button class="save"><h2>Save and exit</h2></button> 
+                </div>
+            </div>
+            <div class="credit">
+                <button class="partbottom" ><h4>CREDITS</h4></button>
+                <button class="partbottom" ><h4>SUPPORT</h4></button>
+                <button class="partbottom" ><h4>THERMS AND PRIVACY</h4></button>
+            </div>
+        </div>
+    </main>
+    <script src="js/script.js"></script>
+</body>
+</html>

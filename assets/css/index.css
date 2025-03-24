@@ -18,7 +18,7 @@ main .container-Txt {
     width: 100%;
     background-color: white;
     border-radius: 1.5vw;
-    padding: 2vw 3vw 3vw 3vw;
+    padding: 4vw 3vw 4vw 3vw;
     font-size: 1vw !important;
 }
 
@@ -100,10 +100,7 @@ main .bottom {
     gap: 0.2vw;
     padding: 0.7vw 0;
 }
-h3 {
-    font-size: 1.5vw;
-    text-align: center;
-}
+
 h2 {
     font-size: 1.8vw;
     color: #ffffff;
