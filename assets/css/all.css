@@ -1,9 +1,8 @@
 html, body {
     margin: 0;
     padding: 0;
-    background-color: #FFFBE7;
+    background-color: #4a90e2;
     width: 100vw;
-    height: 100vh;
 }
 
 html::-webkit-scrollbar, body::-webkit-scrollbar {

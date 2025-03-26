@@ -8,7 +8,7 @@
 
 .left-section {
     width: 20vw !important;
-    height: 100vh;
+    height: 330vh;
     flex: 1;
     padding-left: 2vw;
     padding-top: 2vw;
@@ -18,7 +18,7 @@
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
-    clip-path: polygon(0 0, 100% 0%, 70% 100%, 0% 100%);
+    clip-path: polygon(0 0, 100% 0%, 00% 100%, 0% 100%);
 }
 main {
     z-index: 0;
@@ -67,15 +67,16 @@ main .part1 , .part2 {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    height: 4vw;
+    height: 3.5vw;
     padding: 1vw 3vw;
 }
 main .part1 {
-    background-color: #3e67ab;
-}
-main .part2 {
     background-color: #4a90e2 ;
 }
+main .part2 {
+    background-color: #3e67ab;
+}
+
 main .partleft {
     display: flex;
     flex-direction: row;
@@ -93,8 +94,8 @@ main .containerplace {
     padding: 0.4vw;
 }
 main img {
-    width: 3vw;
-    height: 3vw;
+    width: 2.7vw;
+    height: 2.7vw;
 }
 .ranking-wrapper {
     width: 100%;
@@ -114,9 +115,10 @@ main .part1right , .part2right {
 
 }
 main .part1right  {
-    background-color: #4a90e2;
-}
-main .part2right  {
     background-color: #3e67ab;   
 }
+main .part2right  {
+    background-color: #4a90e2;
+}
+
 

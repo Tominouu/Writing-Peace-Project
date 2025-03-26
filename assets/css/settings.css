@@ -14,11 +14,20 @@
     padding-top: 2vw;
     background-color: #3e67ab;
     position: relative;
-    overflow: hidden;
+    overflow:visible !important;
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
     clip-path: polygon(0 0, 100% 0%, 70% 100%, 0% 100%);
+}
+.right-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 45vw;
+    align-items: flex-end;
+    margin: 0;
+    padding: 0;
 }
 main {
     z-index: 0;
