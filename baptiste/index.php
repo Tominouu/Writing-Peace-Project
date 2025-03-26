@@ -3,7 +3,7 @@ session_start();
 require_once 'config.php';
 
 if (!isset($_SESSION['user_id'])) {
-    header("Location: /baptiste/login.html");
+    header("Location: /baptiste/login.php");
     exit();
 }
 
@@ -37,10 +37,10 @@ $user = $stmt->fetch();
             <img src="../assets/img/player.png" alt="Logo Peace Words" >
             <h3><?php echo $user['username']; ?></h3>
             <div class="connect">
-                <a href="login.html">
+                <a href="login.php">
                     <button class="login"><h3>Log in</h3></button>
                 </a>
-                <a href="signup.html">
+                <a href="signup.php">
                     <button class="signup"><h3>Sign up</h3></button>
                 </a>
             </div>

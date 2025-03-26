@@ -24,31 +24,21 @@
                 <img src="../assets/img/icons-home.png" alt="Home Icon"  class="icons-home">
             </a>
             <div class="connect">
-                <a href="login.html">
+                <a href="login.php">
                     <button class="login"><h3>Log in</h3></button>
                 </a>
-                <a href="signup.html">
+                <a href="signup.php">
                     <button class="signup"><h3>Sign up</h3></button>
                 </a>
             </div>
         </header>
         <main>
-            <h1 class="signup-title">Sign Up</h1>
+            <h1 class="signup-title">Log In</h1>
             <div class="signup-container">
-                <form class="signup-form" method="POST" action="../creation.php">
-                    <div class="input-group">
-                        <div class="input-group-collumn">   
-                            <h2>First Name</h2>
-                            <input type="text" placeholder="Bob" name="firstname" required>
-                        </div>
-                        <div class="input-group-collumn">
-                            <h2>Username</h2>
-                            <input type="text" placeholder="bobdu72xXxl@Mu€rt€" name="username" required>
-                        </div>
-                    </div>
+                <form class="signup-form" method="POST" action="../authentificate.php">
                     <div class="input-group-collumn">
-                        <h2>Email</h2>
-                        <input type="email" placeholder="exemple@gmail.com" name="email" required>
+                        <h2>Username</h2>
+                        <input type="text" placeholder="bobdu72xXxl" name="username" required>
                     </div>
                     <div class="input-group-collumn">
                         <h2>Password</h2>
@@ -57,8 +47,8 @@
                     <button type="submit" class="submit-btn">SUBMIT</button>
                 </form>
                 <div class="login-text">
-                    <p>Have an account ?</p>
-                    <a href="login.html">
+                    <p>Don't have an account ?</p>
+                    <a href="signup.php">
                         <img src="../assets/img/icons-arrow.png" class="icons-arrow">
                     </a>
                 </div>
