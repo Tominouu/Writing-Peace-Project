@@ -50,7 +50,7 @@ $user = $stmt->fetch();
                 <div class="container-Txt">
                     <H1>“Discover the beauty of every script”</H1>
                 </div>
-                <a href="../index.php">
+                <a href="../index.php" style="text-decoration: none;">
                     <button class="Play"><H1>PLAY</H1></button>
                 </a>
             </div>
