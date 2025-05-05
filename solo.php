@@ -16,11 +16,26 @@ function getQuestion($pdo) {
     $choices = $wrongAnswers;
     $choices[] = $question['langue'];
     shuffle($choices);
+    
+    // Récupérer les informations sur le système d'écriture
+    $stmt = $pdo->prepare("SELECT systeme_ecriture, info_ecriture FROM systemes_ecriture WHERE langue = ?");
+    $stmt->execute([$question['langue']]);
+    $writingSystem = $stmt->fetch();
+    
+    // Si aucune info n'est trouvée, utiliser des informations par défaut
+    if (!$writingSystem) {
+        $writingSystem = [
+            'systeme_ecriture' => 'Non spécifié',
+            'info_ecriture' => 'Informations non disponibles pour ce système d\'écriture.'
+        ];
+    }
 
     return [
         "phrase" => $question['phrase'],
         "correct" => $question['langue'],
-        "choices" => $choices
+        "choices" => $choices,
+        "writing_system" => $writingSystem['systeme_ecriture'],
+        "writing_info" => $writingSystem['info_ecriture']
     ];
 }
 
@@ -165,11 +180,37 @@ if (!isset($_SESSION["score"])) {
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
         
+        .phrase-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 30px 0;
+        }
+        
         .phrase {
             font-size: 28px;
             font-weight: bold;
             color: #3c74c9;
-            margin: 30px 0;
+        }
+        
+        .info-button {
+            position: absolute;
+            right: -10px;
+            top: -10px;
+            background-color: #f39c12;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
         
         .reaction-buttons {
@@ -243,6 +284,61 @@ if (!isset($_SESSION["score"])) {
             z-index: 0;
         }
         
+        /* Modal pour les infos d'écriture */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            overflow: auto;
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 15% auto;
+            padding: 30px;
+            border-radius: 15px;
+            width: 80%;
+            max-width: 600px;
+            position: relative;
+            animation: modalOpen 0.4s;
+        }
+        
+        @keyframes modalOpen {
+            from {opacity: 0; transform: scale(0.9);}
+            to {opacity: 1; transform: scale(1);}
+        }
+        
+        .close-modal {
+            position: absolute;
+            right: 15px;
+            top: 10px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #3c74c9;
+            cursor: pointer;
+        }
+        
+        .writing-system-info {
+            text-align: left;
+        }
+        
+        .writing-system-title {
+            color: #3c74c9;
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+        
+        .writing-system-desc {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #333;
+        }
+        
         /* Couleurs aléatoires pour les tags de langue */
         .tag-color-1 { background-color: #e74c3c; }
         .tag-color-2 { background-color: #3498db; }
@@ -252,6 +348,19 @@ if (!isset($_SESSION["score"])) {
         .tag-color-6 { background-color: #1abc9c; }
         .tag-color-7 { background-color: #d35400; }
         .tag-color-8 { background-color: #c0392b; }
+        
+        /* Bouton de découverte */
+        .discover-button {
+            background-color: #2ecc71;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 12px 25px;
+            margin: 20px auto 10px auto;
+            font-size: 16px;
+            cursor: pointer;
+            display: block;
+        }
         
         @media (max-width: 768px) {
             .main-content {
@@ -291,7 +400,12 @@ if (!isset($_SESSION["score"])) {
         
         <div class="right-panel">
             <div class="question-card">
-                <div class="phrase"><?= $_SESSION["question"]['phrase'] ?></div>
+                <div class="phrase-container">
+                    <div class="phrase"><?= $_SESSION["question"]['phrase'] ?></div>
+                    <?php if (isset($_SESSION["current_question_answered"]) && $_SESSION["current_question_answered"] === true): ?>
+                    <button id="infoButton" class="info-button">?</button>
+                    <?php endif; ?>
+                </div>
                 
                 <div class="reaction-buttons">
                     <button class="reaction-btn">💙</button>
@@ -321,5 +435,45 @@ if (!isset($_SESSION["score"])) {
             </div>
         </div>
     </div>
+    
+    <!-- Modal pour les informations sur le système d'écriture -->
+    <div id="writingSystemModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="writing-system-info">
+                <h3 class="writing-system-title">Système d'écriture : <?= $_SESSION["question"]['writing_system'] ?></h3>
+                <p class="writing-system-desc"><?= $_SESSION["question"]['writing_info'] ?></p>
+                <button class="discover-button">Découvrir plus sur ce système d'écriture</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Script pour la modal
+        const modal = document.getElementById("writingSystemModal");
+        const infoBtn = document.getElementById("infoButton");
+        const closeBtn = document.querySelector(".close-modal");
+        
+        // Afficher la modal quand on clique sur le bouton info
+        if (infoBtn) {
+            infoBtn.onclick = function() {
+                modal.style.display = "block";
+            }
+        }
+        
+        // Fermer la modal quand on clique sur X
+        if (closeBtn) {
+            closeBtn.onclick = function() {
+                modal.style.display = "none";
+            }
+        }
+        
+        // Fermer la modal si on clique en dehors
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
 </body>
 </html>
