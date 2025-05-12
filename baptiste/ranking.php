@@ -30,7 +30,7 @@ $ranking = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <img src="../assets/img/icons-home.png" alt="Home Icon" class="icons-home">
             </a>
             <img src="../assets/img/player.png" alt="Logo Peace Words">
-            <h3><?= $_SESSION['pseudo'] ?? 'Invité' ?></h3>
+            <h3><?= $_SESSION['username'] ?? 'Invité' ?></h3>
             <div class="connect">
                 <a href="login.php"><button class="login"><h3>Log in</h3></button></a>
                 <a href="signup.php"><button class="signup"><h3>Sign up</h3></button></a>
@@ -54,7 +54,7 @@ $ranking = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 <h3>#<?= $place ?></h3>
                             </div>
                             <img src="../assets/img/player.png" alt="">
-                            <h4><?= htmlspecialchars($player['pseudo']) ?></h4>
+                            <h4><?= htmlspecialchars($player['username']) ?></h4>
                         </div>
                         <div class="<?= $class ?>right">
                             <h3><?= number_format($player['points'], 0, ',', ' ') ?></h3>
