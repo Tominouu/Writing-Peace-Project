@@ -47,7 +47,7 @@ main h1 {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 0 0 2vw 0;
+    margin: 0.5vw 0 2vw 0;
 }
 .mid .right {
     display: flex;
