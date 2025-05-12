@@ -375,7 +375,7 @@ if (!isset($_SESSION["score"])) {
 <body>
     <div class="header">
         <div class="auth-buttons">
-            <a href="index.php" class="home-icon">🏠</a>
+            <a href="/baptiste/index.php" class="home-icon">🏠</a>
             <a href="#" class="login-btn">Log in</a>
             <a href="#" class="signup-btn">Sign Up</a>
         </div>
