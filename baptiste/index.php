@@ -50,7 +50,9 @@ $user = $stmt->fetch();
                 <div class="container-Txt">
                     <H1>“Discover the beauty of every script”</H1>
                 </div>
-                <button class="Play"><H1>PLAY</H1></button>
+                <a href="../solo.php" style="text-decoration: none;">
+                    <button class="Play"><H1>PLAY</H1></button>
+                </a>
             </div>
             <div class="bottom">
                 <a href="settings.html">
