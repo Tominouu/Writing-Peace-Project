@@ -20,13 +20,13 @@ $ranking = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <a href="index.html">
+    <a href="index.php">
         <img src="../assets/img/logo.png" alt="Logo Peace Words" class="logo">
     </a>
     <div class="left-section"></div>
     <div class="right-section">
         <header>
-            <a href="index.html">
+            <a href="index.php">
                 <img src="../assets/img/icons-home.png" alt="Home Icon" class="icons-home">
             </a>
             <img src="../assets/img/player.png" alt="Logo Peace Words">
