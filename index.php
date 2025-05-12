@@ -2,7 +2,7 @@
 require_once 'config.php';
 session_start();
 if (!isset($_SESSION['user_id'])) {
-    header("Location: authentificate.php");
+    header("Location: baptiste/index.php");
     exit;
 }
 ?>
