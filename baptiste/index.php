@@ -10,6 +10,10 @@ if (!isset($_SESSION['user_id'])) {
 $stmt = $pdo->prepare("SELECT username FROM users WHERE id = ?");
 $stmt->execute([$_SESSION['user_id']]);
 $user = $stmt->fetch();
+
+// Récupération des 4 meilleurs joueurs
+$rankingStmt = $pdo->query("SELECT username, points FROM users ORDER BY points DESC LIMIT 4");
+$topPlayers = $rankingStmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +21,7 @@ $user = $stmt->fetch();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page d'inscription</title>
+    <title>Accueil - Writing Peace</title>
     <link rel="stylesheet" href="../assets/css/all.css">
     <link rel="stylesheet" href="../assets/css/index.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,15 +31,15 @@ $user = $stmt->fetch();
 <body>
     <div class="left-section">
         <div class="logo-container">
-            <a href="index.html">
+            <a href="index.php">
                 <img src="../assets/img/logo.png" alt="Logo Peace Words" class="logo">
             </a>
         </div>
     </div>
     <div class="right-section">
         <header>
-            <img src="../assets/img/player.png" alt="Logo Peace Words" >
-            <h3><?php echo $user['username']; ?></h3>
+            <img src="../assets/img/player.png" alt="Logo Peace Words">
+            <h3><?= htmlspecialchars($user['username']) ?></h3>
             <div class="connect">
                 <a href="login.php">
                     <button class="login"><h3>Log in</h3></button>
@@ -48,10 +52,10 @@ $user = $stmt->fetch();
         <main>
             <div class="top">
                 <div class="container-Txt">
-                    <H1>“Discover the beauty of every script”</H1>
+                    <h1>“Discover the beauty of every script”</h1>
                 </div>
                 <a href="../solo.php" style="text-decoration: none;">
-                    <button class="Play"><H1>PLAY</H1></button>
+                    <button class="Play"><h1>PLAY</h1></button>
                 </a>
             </div>
             <div class="bottom">
@@ -60,33 +64,27 @@ $user = $stmt->fetch();
                 </a>
                 <div class="container-Player">
                     <div class="top">
-                        <H2>RANKING</H2>
-                        <a href="ranking.html">
+                        <h2>RANKING</h2>
+                        <a href="ranking.php">
                             <img class="icons-arrow" src="../assets/img/icons-arrow.png" alt="">
                         </a>
                     </div>
                     <div class="bottom">
                         <div class="other-Player">
+                            <?php for ($i = 1; $i < count($topPlayers); $i++): ?>
                             <div class="other-Player-1">
-                                <h3>#1</h3>
+                                <h3>#<?= $i + 1 ?></h3>
                                 <img class="Player-img" src="../assets/img/player.png" alt="">
-                                <p class="pseudo">pseudo</p>
+                                <p class="pseudo"><?= htmlspecialchars($topPlayers[$i]['username']) ?></p>
                             </div>
-                            <div class="other-Player-1">
-                                <h3>#1</h3>
-                                <img class="Player-img" src="../assets/img/player.png" alt="">
-                                <p class="pseudo">pseudo</p>
-                            </div>
-                            <div class="other-Player-1">
-                                <h3>#1</h3>
-                                <img class="Player-img" src="../assets/img/player.png" alt="">
-                                <p class="pseudo">pseudo</p>
-                            </div>
+                            <?php endfor; ?>
                         </div>
                         <div class="actual-Player">
-                            <h3>#1</h3>
-                            <img class="Player-img" src="../assets/img/player.png" alt="">
-                            <p class="pseudo">pseudo</p>
+                            <?php if (!empty($topPlayers)): ?>
+                                <h3>#1</h3>
+                                <img class="Player-img" src="../assets/img/player.png" alt="">
+                                <p class="pseudo"><?= htmlspecialchars($topPlayers[0]['username']) ?></p>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
