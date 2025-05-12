@@ -61,7 +61,7 @@ $user = $stmt->fetch();
                 <div class="container-Player">
                     <div class="top">
                         <H2>RANKING</H2>
-                        <a href="ranking.html">
+                        <a href="ranking.php">
                             <img class="icons-arrow" src="../assets/img/icons-arrow.png" alt="">
                         </a>
                     </div>
