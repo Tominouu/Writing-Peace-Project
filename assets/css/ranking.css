@@ -83,7 +83,7 @@ main .partleft {
     align-items: center;
     width: auto;
     justify-content: space-between;
-    gap: 4vw;
+    gap: 3vw;
 }
 main .containerplace {
     display: flex;
