@@ -44,7 +44,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['answer'])) {
                 $_SESSION["score"] = 0;
             }
             $_SESSION["score"]++;
-            $message = "✅ Bonne réponse !";
+            // Mettre à jour les points de l'utilisateur dans la base de données
+            $updatePoints = $pdo->prepare("UPDATE users SET points = points + 10 WHERE id = :user_id");
+            $updatePoints->execute([':user_id' => $_SESSION['user_id']]);
+            $message = "✅ Bonne réponse ! +10 points";
         } else {
             $message = "❌ Mauvaise réponse ! La bonne réponse était : $correctAnswer";
         }
