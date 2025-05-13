@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/css/all.css">
+    <link rel="stylesheet" href="../assets/css/index.css">
+    <link rel="stylesheet" href="../assets/css/solo.css">
+    <title>Writing Peace</title>
+    
+</head>
+    <div class="left-section">
+        <div class="logo-container">
+            <a href="index.html">
+                <img src="../assets/img/logo.png" alt="Logo Peace Words" class="logo">
+            </a>
+        </div>
+    </div>
+    <div class="right-section">
+        <header>
+            <img src="../assets/img/player.png" alt="Logo Peace Words" >
+            <h3><?php echo $user['username']; ?></h3>
+            <div class="connect">
+                <a href="login.php">
+                    <button class="login"><h3>Log in</h3></button>
+                </a>
+                <a href="signup.php">
+                    <button class="signup"><h3>Sign up</h3></button>
+                </a>
+            </div>
+        </header>
+        <main>
+            <div class="top">
+                <div class="container-Txt">
+                    <H1>czvze</H1>
+                    <img src="../assets/img/point-dinterrogation.png" alt="Logo Peace Words" class="logo" id="openPopup">
+
+                </div>
+                <div class="mid">
+                    <div class="left">
+                        <img src="../assets/img/Arrière-plan coeur en bleu.png" alt="Coeur remplie">
+                        <img src="../assets/img/Arrière-plan coeur en bleu.png" alt="Coeur remplie">
+                        <img src="../assets/img/Arrière-plan coeur contour.png" alt="Coeur vide">
+                    </div>
+                    <div class="right">
+                        <h4>19</h4>
+                        <img src="../assets/img/chrono bleu.png" alt="Chrono">
+                    </div>
+                </div>
+            </div>
+
+            <div class="bottom">
+                <a href="settings.html">
+                    <img class="icons-nut" src="../assets/img/icons-nut.png" alt="">
+                </a>
+                <div class="container-answers">
+                    <div class="line">
+                        <div class="answer">
+                            <h5>chinois</h5>
+                        </div>
+                        <div class="answer">
+                            <h5>grec</h5>
+                        </div>
+                    </div>
+                    <div class="line">
+                        <div class="answer">
+                            <h5>latin</h5>
+                        </div>
+                        <div class="answer">
+                            <h5>russe</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+            <div class="overlay" id="popupOverlay">
+                <div class="popup">
+                <img src="../assets/img/close.png" alt="Fermer" class="close-img" id="closePopup">
+                <h2>Info utiles</h2>
+                <p>Voici le contenu de votre pop-up. Vous pouvez ajouter ici n’importe quel texte ou élément HTML.</p>
+                </div>
+            </div>
+
+            <!-- Script JS -->
+              <script>
+                const openBtn = document.getElementById('openPopup');
+                const overlay = document.getElementById('popupOverlay');
+                const closeBtn = document.getElementById('closePopup');
+
+                openBtn.addEventListener('click', () => {
+                overlay.style.display = 'flex';
+                });
+
+                closeBtn.addEventListener('click', () => {
+                overlay.style.display = 'none';
+                });
+            </script>
+        
+</body>
+
+</html>
