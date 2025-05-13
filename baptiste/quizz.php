@@ -73,6 +73,7 @@ if (!isset($_SESSION["lives"])) {
     <link rel="stylesheet" href="../assets/css/all.css">
     <link rel="stylesheet" href="../assets/css/index.css">
     <link rel="stylesheet" href="../assets/css/solo.css">
+    <link rel="stylesheet" href="../assets/css/quiz.css">
     <title>Writing Peace</title>
     <div class="left-section">
         <div class="logo-container">

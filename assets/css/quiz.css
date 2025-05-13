@@ -1,0 +1,30 @@
+.message {
+    background-color: #ffffff;
+    color: #3e67ab;
+    padding: 1vw;
+    border-radius: 1vw;
+    text-align: center;
+    margin: 1vw 0;
+    font-size: 1.5vw;
+    font-weight: bold;
+    box-shadow: 0 0.2vw 0.5vw rgba(0, 0, 0, 0.1);
+}
+
+.next-question {
+    width: 100%;
+    padding: 1.5vw;
+    background-color: #3e67ab;
+    border: #ffffff solid 0.3vw;
+    border-radius: 0.8vw;
+    color: #ffffff;
+    font-size: 1.8vw;
+    margin-top: 1vw;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.next-question:hover {
+    background-color: #ffffff;
+    color: #3e67ab;
+    border-color: #3e67ab;
+}
