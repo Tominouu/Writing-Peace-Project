@@ -157,16 +157,27 @@ if (!isset($_SESSION["lives"])) {
 
             <!-- Script JS -->
               <script>
+                // Script pour la popup
                 const openBtn = document.getElementById('openPopup');
                 const overlay = document.getElementById('popupOverlay');
                 const closeBtn = document.getElementById('closePopup');
 
                 openBtn.addEventListener('click', () => {
-                overlay.style.display = 'flex';
+                    overlay.style.display = 'flex';
                 });
 
                 closeBtn.addEventListener('click', () => {
-                overlay.style.display = 'none';
+                    overlay.style.display = 'none';
+                });
+
+                // Script pour masquer les réponses
+                document.querySelectorAll('.answer').forEach(button => {
+                    button.addEventListener('click', function() {
+                        // Masquer toutes les réponses
+                        document.querySelectorAll('.answer').forEach(btn => {
+                            btn.classList.add('hidden');
+                        });
+                    });
                 });
             </script>
         
