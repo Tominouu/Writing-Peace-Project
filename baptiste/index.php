@@ -54,7 +54,7 @@ $topPlayers = $rankingStmt->fetchAll(PDO::FETCH_ASSOC);
                 <div class="container-Txt">
                     <h1>“Discover the beauty of every script”</h1>
                 </div>
-                <a href="../solo.php" style="text-decoration: none;">
+                <a href="/quizz.php" style="text-decoration: none;">
                     <button class="Play"><h1>PLAY</h1></button>
                 </a>
             </div>
