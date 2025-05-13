@@ -2,7 +2,15 @@
 <?php
 session_start();
 require_once "../config.php"; // Fichier de connexion à la base
-
+if (!isset($_SESSION['user_id'])) {
+    header("Location: /baptiste/login.php");
+    exit();
+}
+$user_id = $_SESSION['user_id'];
+$stmt = $pdo->prepare("SELECT * FROM users WHERE id = :user_id");
+$stmt->bindParam(":user_id", $user_id, PDO::PARAM_INT);
+$stmt->execute();
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
 // Fonction pour récupérer une phrase aléatoire et ses mauvaises réponses
 function getQuestion($pdo) {
     // Récupérer une phrase aléatoire
@@ -85,7 +93,7 @@ if (!isset($_SESSION["lives"])) {
     <div class="right-section">
         <header>
             <img src="../assets/img/player.png" alt="Logo Peace Words" >
-            <h3><?php echo $user['username']; ?></h3>
+            <h3><?= htmlspecialchars($user['username']) ?></h3>
             <div class="connect">
                 <a href="login.php">
                     <button class="login"><h3>Log in</h3></button>
