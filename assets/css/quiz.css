@@ -30,3 +30,14 @@
     color: #3e67ab;
     border-color: #3e67ab;
 }
+
+.answer {
+    opacity: 1;
+    transition: opacity 0.3s ease-out;
+}
+
+.answer.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease-out;
+}
