@@ -19,19 +19,21 @@
 }
 
 .create-button, .join-button {
-    background-color: #007bff;
+    background-color: #3e67ab;
     color: white;
-    border: none;
-    padding: 1rem 2rem;
-    border-radius: 5px;
+    border: 0.2vw solid #ffffff;
+    padding: 0.5vw 1vw;
+    border-radius: 2vw;
     cursor: pointer;
-    font-size: 1.1rem;
-    margin-top: 1rem;
-    transition: background-color 0.3s;
+    font-size: 1.2vw;
+    margin-top: 1vw;
+    transition: all 0.1s ease;
 }
 
 .create-button:hover, .join-button:hover {
-    background-color: #0056b3;
+    background-color: #ffffff;
+    color: #3e67ab;
+    border: 0.2vw solid #3e67ab;
 }
 
 input[name="room_code"] {
@@ -176,15 +178,19 @@ input[name="room_code"] {
 
 .new-game-button {
     display: inline-block;
-    background-color: #28a745;
+    background-color: #3e67ab;
     color: white;
-    padding: 1rem 2rem;
-    border-radius: 5px;
+    border: 0.2vw solid #ffffff;
+    padding: 0.5vw 1vw;
+    border-radius: 2vw;
     text-decoration: none;
-    margin-top: 1rem;
-    transition: background-color 0.3s;
+    margin-top: 1vw;
+    font-size: 1.2vw;
+    transition: all 0.1s ease;
 }
 
 .new-game-button:hover {
-    background-color: #218838;
+    background-color: #ffffff;
+    color: #3e67ab;
+    border: 0.2vw solid #3e67ab;
 }
