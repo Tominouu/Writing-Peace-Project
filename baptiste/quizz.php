@@ -84,6 +84,19 @@ if (!isset($_SESSION["question"])) {
 
 if (!isset($_SESSION["score"])) $_SESSION["score"] = 0;
 if (!isset($_SESSION["lives"])) $_SESSION["lives"] = 3;
+
+// 🎯 FIN DE PARTIE : réinitialiser si demandé
+if (isset($_POST['restart_game'])) {
+    $_SESSION["score"] = 0;
+    $_SESSION["lives"] = 3;
+    $_SESSION["question"] = getQuestion($pdo);
+    $_SESSION["current_question_answered"] = false;
+    $_SESSION["question_start_time"] = time();
+}
+
+// 🎯 FIN DE PARTIE : condition
+$game_over = ($_SESSION["lives"] <= 0);
+
 ?>
 
 <!DOCTYPE html>
@@ -117,56 +130,65 @@ if (!isset($_SESSION["lives"])) $_SESSION["lives"] = 3;
         </header>
 
         <main>
-            <div class="top">
-                <div class="container-Txt">
-                    <h1><?= htmlspecialchars($_SESSION['question']['phrase']) ?></h1>
-                    <img src="../assets/img/point-dinterrogation.png" alt="Logo Peace Words" class="logo" id="openPopup">
+            <?php if ($game_over): ?>
+                <div class="game-over">
+                    <h1>💀 Fin de la partie !</h1>
+                    <p>Votre score final : <strong><?= $_SESSION["score"] ?></strong></p>
+                    <form method="POST">
+                        <button type="submit" name="restart_game" class="restart-button">Rejouer</button>
+                    </form>
                 </div>
-                <div class="mid">
-                    <div class="left">
-                        <?php for($i = 0; $i < $_SESSION['lives']; $i++): ?>
-                            <img src="../assets/img/Arrière-plan coeur en bleu.png" alt="Coeur rempli">
-                        <?php endfor; ?>
-                        <?php for($i = $_SESSION['lives']; $i < 3; $i++): ?>
-                            <img src="../assets/img/Arrière-plan coeur contour.png" alt="Coeur vide">
-                        <?php endfor; ?>
+            <?php else: ?>
+                <div class="top">
+                    <div class="container-Txt">
+                        <h1><?= htmlspecialchars($_SESSION['question']['phrase']) ?></h1>
+                        <img src="../assets/img/point-dinterrogation.png" alt="Aide" class="logo" id="openPopup">
                     </div>
-                    <div class="right">
-                        <h4 id="chrono">10</h4>
-                        <img src="../assets/img/chrono bleu.png" alt="Chrono">
+                    <div class="mid">
+                        <div class="left">
+                            <?php for($i = 0; $i < $_SESSION['lives']; $i++): ?>
+                                <img src="../assets/img/Arrière-plan coeur en bleu.png" alt="Coeur rempli">
+                            <?php endfor; ?>
+                            <?php for($i = $_SESSION['lives']; $i < 3; $i++): ?>
+                                <img src="../assets/img/Arrière-plan coeur contour.png" alt="Coeur vide">
+                            <?php endfor; ?>
+                        </div>
+                        <div class="right">
+                            <h4 id="chrono">10</h4>
+                            <img src="../assets/img/chrono bleu.png" alt="Chrono">
+                        </div>
                     </div>
-                </div>
-                <?php if (isset($message)): ?>
-                    <div class="message"><?= $message ?></div>
-                <?php endif; ?>
-            </div>
-
-            <div class="bottom">
-                <a href="settings.php">
-                    <img class="icons-nut" src="../assets/img/icons-nut.png" alt="">
-                </a>
-                <form method="POST" class="container-answers" id="quiz-form">
-                    <input type="hidden" name="correct_answer" value="<?= htmlspecialchars($_SESSION['question']['correct']) ?>">
-                    <div class="line">
-                        <?php for($i = 0; $i < 2; $i++): ?>
-                            <button type="submit" name="answer" value="<?= htmlspecialchars($_SESSION['question']['choices'][$i]) ?>" class="answer">
-                                <h5><?= htmlspecialchars($_SESSION['question']['choices'][$i]) ?></h5>
-                            </button>
-                        <?php endfor; ?>
-                    </div>
-                    <div class="line">
-                        <?php for($i = 2; $i < 4; $i++): ?>
-                            <button type="submit" name="answer" value="<?= htmlspecialchars($_SESSION['question']['choices'][$i]) ?>" class="answer">
-                                <h5><?= htmlspecialchars($_SESSION['question']['choices'][$i]) ?></h5>
-                            </button>
-                        <?php endfor; ?>
-                    </div>
-                    <?php if ($_SESSION['current_question_answered']): ?>
-                        <button type="submit" name="next_question" class="next-question">Question suivante</button>
+                    <?php if (isset($message)): ?>
+                        <div class="message"><?= $message ?></div>
                     <?php endif; ?>
-                </form>
-            </div>
+                </div>
+
+                <div class="bottom">
+                    <a href="settings.php"><img class="icons-nut" src="../assets/img/icons-nut.png" alt=""></a>
+                    <form method="POST" class="container-answers" id="quiz-form">
+                        <input type="hidden" name="correct_answer" value="<?= htmlspecialchars($_SESSION['question']['correct']) ?>">
+                        <div class="line">
+                            <?php for($i = 0; $i < 2; $i++): ?>
+                                <button type="submit" name="answer" value="<?= htmlspecialchars($_SESSION['question']['choices'][$i]) ?>" class="answer">
+                                    <h5><?= htmlspecialchars($_SESSION['question']['choices'][$i]) ?></h5>
+                                </button>
+                            <?php endfor; ?>
+                        </div>
+                        <div class="line">
+                            <?php for($i = 2; $i < 4; $i++): ?>
+                                <button type="submit" name="answer" value="<?= htmlspecialchars($_SESSION['question']['choices'][$i]) ?>" class="answer">
+                                    <h5><?= htmlspecialchars($_SESSION['question']['choices'][$i]) ?></h5>
+                                </button>
+                            <?php endfor; ?>
+                        </div>
+                        <?php if ($_SESSION['current_question_answered']): ?>
+                            <button type="submit" name="next_question" class="next-question">Question suivante</button>
+                        <?php endif; ?>
+                    </form>
+                </div>
+            <?php endif; ?>
         </main>
+
 
         <div class="overlay" id="popupOverlay">
             <div class="popup">
