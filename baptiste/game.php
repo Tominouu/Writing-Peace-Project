@@ -150,17 +150,22 @@ if ($gameInfo['game_status'] === 'in_progress') {
 
             <?php else: ?>
                 <div class="game-container">
+                    <div class="timer">
+                        <span id="chrono">10</span>
+                    </div>
                     <div class="question">
                         <h2><?= htmlspecialchars($_SESSION['question']['phrase']) ?></h2>
                     </div>
 
-                    <form method="POST" class="answers-container">
+                    <form method="POST" class="answers-container" id="quiz-form">
                         <input type="hidden" name="correct_answer" value="<?= htmlspecialchars($_SESSION['question']['correct']) ?>">
-                        <?php foreach ($_SESSION['question']['choices'] as $choice): ?>
-                            <button type="submit" name="answer" value="<?= htmlspecialchars($choice) ?>" class="answer-button">
-                                <?= htmlspecialchars($choice) ?>
-                            </button>
-                        <?php endforeach; ?>
+                        <div class="answers-grid">
+                            <?php foreach ($_SESSION['question']['choices'] as $choice): ?>
+                                <button type="submit" name="answer" value="<?= htmlspecialchars($choice) ?>" class="answer-button">
+                                    <?= htmlspecialchars($choice) ?>
+                                </button>
+                            <?php endforeach; ?>
+                        </div>
                     </form>
                 </div>
             <?php endif; ?>
@@ -173,6 +178,37 @@ if ($gameInfo['game_status'] === 'in_progress') {
     setTimeout(function() {
         window.location.reload();
     }, 3000);
+    <?php endif; ?>
+
+    <?php if ($gameInfo['game_status'] === 'in_progress'): ?>
+    // Timer
+    let timeLeft = 10;
+    const chrono = document.getElementById('chrono');
+    const form = document.getElementById('quiz-form');
+
+    const timer = setInterval(() => {
+        timeLeft--;
+        if (chrono) chrono.textContent = timeLeft;
+        if (timeLeft <= 0) {
+            clearInterval(timer);
+            if (!document.querySelector('button[name="next_question"]')) {
+                const input = document.createElement("input");
+                input.type = "hidden";
+                input.name = "timeout";
+                input.value = "1";
+                form.appendChild(input);
+                form.submit();
+            }
+        }
+    }, 1000);
+
+    // Masquer les boutons après clic
+    document.querySelectorAll('.answer-button').forEach(button => {
+        button.addEventListener('click', () => {
+            document.querySelectorAll('.answer-button').forEach(btn => btn.style.display = 'none');
+            clearInterval(timer);
+        });
+    });
     <?php endif; ?>
     </script>
 </body>
