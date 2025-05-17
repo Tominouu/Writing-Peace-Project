@@ -84,6 +84,25 @@ input[name="room_code"] {
 .waiting-screen {
     text-align: center;
     padding: 2rem;
+    position: relative;
+}
+
+.countdown {
+    font-size: 5vw;
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(62, 103, 171, 0.8);
+    animation: pulse 1s infinite;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+@keyframes pulse {
+    0% { transform: translate(-50%, -50%) scale(1); }
+    50% { transform: translate(-50%, -50%) scale(1.1); }
+    100% { transform: translate(-50%, -50%) scale(1); }
 }
 
 .game-container {
@@ -92,44 +111,39 @@ input[name="room_code"] {
 }
 
 .answers-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    margin-top: 2rem;
-    padding: 0 2rem;
+    width: 32vw;
 }
 
 .answers-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
     width: 100%;
-    max-width: 800px;
+    display: flex;
+    flex-direction: column;
 }
 
 .answer-button {
-    background-color: #4a90e2;
-    color: white;
-    border: none;
-    padding: 1.5rem;
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 1.2rem;
-    transition: all 0.3s;
     width: 100%;
+    padding: 1.5vw 0.1vw;
+    background-color: inherit;
+    border: #ffffff solid 0.3vw;
+    border-radius: 0.8vw;
+    color: #ffffff;
+    font-size: 1.8vw;
+    margin-bottom: 1vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
 .answer-button:hover {
-    background-color: #357abd;
-    transform: translateY(-2px);
+    background-color: rgba(255, 255, 255, 0.164);
 }
 
 .timer {
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: #4a90e2;
-    margin: 1rem 0;
+    font-size: 2vw;
+    color: #3e67ab;
+    margin: 0 0 -0.2vw 0;
 }
 
 .game-over {

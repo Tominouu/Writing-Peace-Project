@@ -122,9 +122,25 @@ if ($gameInfo['game_status'] === 'in_progress') {
         <main>
             <?php if ($gameInfo['game_status'] === 'waiting'): ?>
                 <div class="waiting-screen">
-                    <h2>En attente d'un autre joueur</h2>
-                    <p>Code de la room: <strong><?= htmlspecialchars($room_code) ?></strong></p>
-                    <p>Partagez ce code avec votre adversaire pour commencer la partie!</p>
+                    <?php if (!is_null($gameInfo['player2_id'])): ?>
+                        <div class="countdown">La partie commence dans <span id="countdown">10</span></div>
+                        <script>
+                            let countdown = 10;
+                            const countdownElement = document.getElementById('countdown');
+                            const countdownInterval = setInterval(() => {
+                                countdown--;
+                                if (countdownElement) countdownElement.textContent = countdown;
+                                if (countdown <= 0) {
+                                    clearInterval(countdownInterval);
+                                    window.location.reload();
+                                }
+                            }, 1000);
+                        </script>
+                    <?php else: ?>
+                        <h2>En attente d'un autre joueur</h2>
+                        <p>Code de la room: <strong><?= htmlspecialchars($room_code) ?></strong></p>
+                        <p>Partagez ce code avec votre adversaire pour commencer la partie!</p>
+                    <?php endif; ?>
                 </div>
 
             <?php elseif ($gameInfo['game_status'] === 'finished'): ?>
