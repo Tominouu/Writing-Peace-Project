@@ -1,0 +1,3 @@
+ALTER TABLE rooms
+ADD COLUMN player1_answered BOOLEAN DEFAULT 0,
+ADD COLUMN player2_answered BOOLEAN DEFAULT 0;

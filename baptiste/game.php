@@ -42,28 +42,46 @@ function getQuestion($pdo) {
 }
 
 // Traitement des réponses
-if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['answer'])) {
-    $userAnswer = $_POST["answer"];
-    $correctAnswer = $_POST["correct_answer"];
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $isPlayer1 = ($user_id == $room['player1_id']);
-    $scoreField = $isPlayer1 ? 'player1_score' : 'player2_score';
+    $answerField = $isPlayer1 ? 'player1_answered' : 'player2_answered';
+    
+    if (isset($_POST['answer'])) {
+        $userAnswer = $_POST["answer"];
+        $correctAnswer = $_POST["correct_answer"];
+        $scoreField = $isPlayer1 ? 'player1_score' : 'player2_score';
 
-    if ($userAnswer === $correctAnswer) {
-        $stmt = $pdo->prepare("UPDATE rooms SET $scoreField = $scoreField + 10, current_question = current_question + 1 WHERE code = ?");
-        $stmt->execute([$room_code]);
-    } else {
-        $stmt = $pdo->prepare("UPDATE rooms SET current_question = current_question + 1 WHERE code = ?");
+        if ($userAnswer === $correctAnswer) {
+            $stmt = $pdo->prepare("UPDATE rooms SET $scoreField = $scoreField + 10, $answerField = 1 WHERE code = ?");
+            $stmt->execute([$room_code]);
+        } else {
+            $stmt = $pdo->prepare("UPDATE rooms SET $answerField = 1 WHERE code = ?");
+            $stmt->execute([$room_code]);
+        }
+    } elseif (isset($_POST['timeout'])) {
+        $stmt = $pdo->prepare("UPDATE rooms SET $answerField = 1 WHERE code = ?");
         $stmt->execute([$room_code]);
     }
 
-    // Vérifier si c'est la fin du jeu (10 questions)
-    $stmt = $pdo->prepare("SELECT current_question FROM rooms WHERE code = ?");
+    // Vérifier si les deux joueurs ont répondu
+    $stmt = $pdo->prepare("SELECT player1_answered, player2_answered FROM rooms WHERE code = ?");
     $stmt->execute([$room_code]);
-    $currentQuestion = $stmt->fetch()['current_question'];
+    $answers = $stmt->fetch();
 
-    if ($currentQuestion > 10) {
-        $stmt = $pdo->prepare("UPDATE rooms SET game_status = 'finished' WHERE code = ?");
+    if ($answers['player1_answered'] && $answers['player2_answered']) {
+        // Passer à la question suivante et réinitialiser les réponses
+        $stmt = $pdo->prepare("UPDATE rooms SET current_question = current_question + 1, player1_answered = 0, player2_answered = 0 WHERE code = ?");
         $stmt->execute([$room_code]);
+
+        // Vérifier si c'est la fin du jeu (10 questions)
+        $stmt = $pdo->prepare("SELECT current_question FROM rooms WHERE code = ?");
+        $stmt->execute([$room_code]);
+        $currentQuestion = $stmt->fetch()['current_question'];
+
+        if ($currentQuestion > 10) {
+            $stmt = $pdo->prepare("UPDATE rooms SET game_status = 'finished' WHERE code = ?");
+            $stmt->execute([$room_code]);
+        }
     }
 }
 
