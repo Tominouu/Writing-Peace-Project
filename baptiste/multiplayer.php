@@ -54,7 +54,7 @@ if (isset($_POST['join_room'])) {
             exit();
         }
     } else {
-        $error = "Code de room invalide ou partie déjà commencée";
+        $error = "Room incorect";
     }
 }
 ?>
@@ -85,7 +85,7 @@ if (isset($_POST['join_room'])) {
         </header>
 
         <main class="multiplayer-container">
-            <h1>Mode Multijoueur</h1>
+            <h1>1V1</h1>
             
             <?php if (isset($error)): ?>
                 <div class="error-message"><?= htmlspecialchars($error) ?></div>
@@ -93,17 +93,17 @@ if (isset($_POST['join_room'])) {
 
             <div class="multiplayer-options">
                 <div class="create-room">
-                    <h2>Créer une partie</h2>
+                    <h2>Create a party</h2>
                     <form method="POST">
-                        <button type="submit" name="create_room" class="create-button">Créer une room</button>
+                        <button type="submit" name="create_room" class="create-button">Create a room</button>
                     </form>
                 </div>
 
                 <div class="join-room">
-                    <h2>Rejoindre une partie</h2>
+                    <h2>Join a party</h2>
                     <form method="POST">
                         <input type="text" name="room_code" placeholder="Entrez le code de la room" maxlength="6" required>
-                        <button type="submit" name="join_room" class="join-button">Rejoindre</button>
+                        <button type="submit" name="join_room" class="join-button">Join</button>
                     </form>
                 </div>
             </div>
