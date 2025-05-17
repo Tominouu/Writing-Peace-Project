@@ -23,13 +23,16 @@ function getQuestion($pdo) {
     $choices = $wrongAnswers;
     $choices[] = $question['langue'];
     shuffle($choices);
-    
+
     return [
         "phrase" => $question['phrase'],
         "correct" => $question['langue'],
-        "choices" => $choices
+        "choices" => $choices,
+        "histoire" => $question['histoire'],
+        "image_ecriture" => $question['image_ecriture']
     ];
 }
+
 
 // Traitement des réponses ou expiration
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -164,7 +167,7 @@ $game_over = ($_SESSION["lives"] <= 0);
                 </div>
 
                 <div class="bottom">
-                    <a href="settings.php"><img class="icons-nut" src="../assets/img/icons-nut.png" alt=""></a>
+                    <a href="settings.html"><img class="icons-nut" src="../assets/img/icons-nut.png" alt=""></a>
                     <form method="POST" class="container-answers" id="quiz-form">
                         <input type="hidden" name="correct_answer" value="<?= htmlspecialchars($_SESSION['question']['correct']) ?>">
                         <div class="line">
@@ -193,8 +196,12 @@ $game_over = ($_SESSION["lives"] <= 0);
         <div class="overlay" id="popupOverlay">
             <div class="popup">
                 <img src="../assets/img/close.png" alt="Fermer" class="close-img" id="closePopup">
-                <h2>Info utiles</h2>
-                <p>Voici le contenu de votre pop-up.</p>
+                <h2>Langue : <?= htmlspecialchars($_SESSION['question']['correct']) ?></h2>
+                <p><?= nl2br(htmlspecialchars($_SESSION['question']['histoire'])) ?></p>
+
+                <?php if (!empty($_SESSION['question']['image_ecriture'])): ?>
+                    <img src="<?= htmlspecialchars($_SESSION['question']['image_ecriture']) ?>" alt="Alphabet" style="max-width: 100%; margin-top: 15px;">
+                <?php endif; ?>
             </div>
         </div>
     </div>
