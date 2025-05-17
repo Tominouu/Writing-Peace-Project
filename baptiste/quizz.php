@@ -47,16 +47,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $userAnswer = $_POST["answer"];
 
             if ($elapsed_time > $max_time_allowed) {
-                $message = "⏰ Temps écoulé ! La bonne réponse était : $correctAnswer";
+                $message = "⏰ Time's up! The correct answer was: $correctAnswer";
                 $_SESSION["lives"] = max(0, $_SESSION["lives"] - 1);
             } else {
                 if ($userAnswer === $correctAnswer) {
                     $_SESSION["score"] = ($_SESSION["score"] ?? 0) + 10;
                     $updatePoints = $pdo->prepare("UPDATE users SET points = points + 10 WHERE id = :user_id");
                     $updatePoints->execute([':user_id' => $_SESSION['user_id']]);
-                    $message = "✅ Bonne réponse ! +10 points";
+                    $message = "✅ Good answer! +10 points";
                 } else {
-                    $message = "❌ Mauvaise réponse ! La bonne réponse était : $correctAnswer";
+                    $message = "❌ Wrong answer! The correct answer was: $correctAnswer";
                     $_SESSION["lives"] = max(0, $_SESSION["lives"] - 1);
                 }
             }
@@ -66,7 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         // Gestion timeout automatique (quand JS envoie un POST sans réponse)
         if (isset($_POST["timeout"])) {
-            $message = "⏰ Temps écoulé ! La bonne réponse était : $correctAnswer";
+            $message = "⏰ Time's up! The correct answer was: $correctAnswer";
             $_SESSION["lives"] = max(0, $_SESSION["lives"] - 1);
             $_SESSION["current_question_answered"] = true;
         }
@@ -135,10 +135,10 @@ $game_over = ($_SESSION["lives"] <= 0);
         <main>
             <?php if ($game_over): ?>
                 <div class="game-over">
-                    <h1>💀 Fin de la partie !</h1>
+                    <h1>💀 Game over!</h1>
                     <p>Votre score final : <strong><?= $_SESSION["score"] ?></strong></p>
                     <form method="POST">
-                        <button type="submit" name="restart_game" class="restart-button">Rejouer</button>
+                        <button type="submit" name="restart_game" class="restart-button">Retry</button>
                     </form>
                 </div>
             <?php else: ?>
@@ -185,7 +185,7 @@ $game_over = ($_SESSION["lives"] <= 0);
                             <?php endfor; ?>
                         </div>
                         <?php if ($_SESSION['current_question_answered']): ?>
-                            <button type="submit" name="next_question" class="next-question">Question suivante</button>
+                            <button type="submit" name="next_question" class="next-question">Next question</button>
                         <?php endif; ?>
                     </form>
                 </div>
