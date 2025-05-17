@@ -59,7 +59,7 @@ $topPlayers = $rankingStmt->fetchAll(PDO::FETCH_ASSOC);
                         <button class="Play"><h1>PLAY</h1></button>
                     </a>
                     <a href="/baptiste/multiplayer.php" style="text-decoration: none;">
-                        <button class="Play"><h1>MULTIPLAYER</h1></button>
+                        <button class="Play"><h1>DUO</h1></button>
                     </a>
                 </div>
             </div>
