@@ -124,7 +124,7 @@ input[name="room_code"] {
     z-index: 1;
 }
 
-.question .h2 {
+.question h2 {
     color: black;
 }
 
