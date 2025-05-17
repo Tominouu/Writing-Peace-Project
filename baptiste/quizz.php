@@ -196,7 +196,7 @@ $game_over = ($_SESSION["lives"] <= 0);
         <div class="overlay" id="popupOverlay">
             <div class="popup">
                 <img src="../assets/img/close.png" alt="Fermer" class="close-img" id="closePopup">
-                <h2>Langue : <?= htmlspecialchars($_SESSION['question']['correct']) ?></h2>
+                <h2>Language : <?= htmlspecialchars($_SESSION['question']['correct']) ?></h2>
                 <p><?= nl2br(htmlspecialchars($_SESSION['question']['histoire'])) ?></p>
 
                 <?php if (!empty($_SESSION['question']['image_ecriture'])): ?>

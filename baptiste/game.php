@@ -141,7 +141,7 @@ if ($gameInfo['game_status'] === 'in_progress') {
             <?php if ($gameInfo['game_status'] === 'waiting'): ?>
                 <div class="waiting-screen">
                     <?php if (!is_null($gameInfo['player2_id'])): ?>
-                        <div class="countdown">La partie commence dans <span id="countdown">10</span></div>
+                        <div class="countdown">The match begin in <span id="countdown">10</span></div>
                         <script>
                             let countdown = 10;
                             const countdownElement = document.getElementById('countdown');
@@ -155,15 +155,15 @@ if ($gameInfo['game_status'] === 'in_progress') {
                             }, 1000);
                         </script>
                     <?php else: ?>
-                        <h2>En attente d'un autre joueur</h2>
-                        <p>Code de la room: <strong><?= htmlspecialchars($room_code) ?></strong></p>
-                        <p>Partagez ce code avec votre adversaire pour commencer la partie!</p>
+                        <h2>Waiting a player...</h2>
+                        <p>Code of the room: <strong><?= htmlspecialchars($room_code) ?></strong></p>
+                        <p>Share the code to play with another player</p>
                     <?php endif; ?>
                 </div>
 
             <?php elseif ($gameInfo['game_status'] === 'finished'): ?>
                 <div class="game-over">
-                    <h2>Partie terminée!</h2>
+                    <h2>Party finish!</h2>
                     <div class="final-scores">
                         <p><?= htmlspecialchars($gameInfo['player1_name']) ?>: <?= $gameInfo['player1_score'] ?> points</p>
                         <p><?= htmlspecialchars($gameInfo['player2_name']) ?>: <?= $gameInfo['player2_score'] ?> points</p>
@@ -179,7 +179,7 @@ if ($gameInfo['game_status'] === 'in_progress') {
                         }
                         ?>
                     </h3>
-                    <a href="multiplayer.php" class="new-game-button">Nouvelle partie</a>
+                    <a href="multiplayer.php" class="new-game-button">New party</a>
                 </div>
 
             <?php else: ?>
