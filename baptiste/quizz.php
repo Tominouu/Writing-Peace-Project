@@ -1,27 +1,27 @@
 
 <?php
 session_start();
-require_once "../config.php"; // Fichier de connexion à la base
+require_once "../config.php";
+
 if (!isset($_SESSION['user_id'])) {
     header("Location: /baptiste/login.php");
     exit();
 }
+
 $user_id = $_SESSION['user_id'];
 $stmt = $pdo->prepare("SELECT * FROM users WHERE id = :user_id");
 $stmt->bindParam(":user_id", $user_id, PDO::PARAM_INT);
 $stmt->execute();
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
 // Fonction pour récupérer une phrase aléatoire et ses mauvaises réponses
 function getQuestion($pdo) {
-    // Récupérer une phrase aléatoire
     $stmt = $pdo->query("SELECT * FROM phrases ORDER BY RAND() LIMIT 1");
     $question = $stmt->fetch();
 
-    // Récupérer 3 langues incorrectes
     $stmt = $pdo->query("SELECT langue FROM phrases WHERE langue != '{$question['langue']}' ORDER BY RAND() LIMIT 3");
     $wrongAnswers = $stmt->fetchAll(PDO::FETCH_COLUMN);
 
-    // Mélanger la bonne réponse avec les mauvaises
     $choices = $wrongAnswers;
     $choices[] = $question['langue'];
     shuffle($choices);
@@ -39,18 +39,28 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['answer'])) {
     $correctAnswer = $_POST["correct_answer"];
     
     if (!isset($_SESSION["current_question_answered"]) || $_SESSION["current_question_answered"] === false) {
-        if ($userAnswer === $correctAnswer) {
-            if (!isset($_SESSION["score"])) {
-                $_SESSION["score"] = 0;
-            }
-            $_SESSION["score"]++;
-            // Mettre à jour les points de l'utilisateur dans la base de données
-            $updatePoints = $pdo->prepare("UPDATE users SET points = points + 10 WHERE id = :user_id");
-            $updatePoints->execute([':user_id' => $_SESSION['user_id']]);
-            $message = "✅ Bonne réponse ! +10 points";
+        $max_time_allowed = 10; // secondes
+        $current_time = time();
+        $elapsed_time = $current_time - ($_SESSION["question_start_time"] ?? $current_time);
+
+        if ($elapsed_time > $max_time_allowed) {
+            $message = "⏰ Temps écoulé ! La bonne réponse était : $correctAnswer";
+            $_SESSION["lives"] = max(0, $_SESSION["lives"] - 1);
         } else {
-            $message = "❌ Mauvaise réponse ! La bonne réponse était : $correctAnswer";
+            if ($userAnswer === $correctAnswer) {
+                if (!isset($_SESSION["score"])) {
+                    $_SESSION["score"] = 0;
+                }
+                $_SESSION["score"] += 10;
+                $updatePoints = $pdo->prepare("UPDATE users SET points = points + 10 WHERE id = :user_id");
+                $updatePoints->execute([':user_id' => $_SESSION['user_id']]);
+                $message = "✅ Bonne réponse ! +10 points";
+            } else {
+                $message = "❌ Mauvaise réponse ! La bonne réponse était : $correctAnswer";
+                $_SESSION["lives"] = max(0, $_SESSION["lives"] - 1);
+            }
         }
+
         $_SESSION["current_question_answered"] = true;
     }
 }
@@ -59,23 +69,25 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['answer'])) {
 if (isset($_POST["next_question"])) {
     $_SESSION["current_question_answered"] = false;
     $_SESSION["question"] = getQuestion($pdo);
+    $_SESSION["question_start_time"] = time(); // 🔥 Horodatage de début
 }
 
-// Initialisation de la question et du score
+// Initialisation de la première question
 if (!isset($_SESSION["question"])) {
     $_SESSION["question"] = getQuestion($pdo);
     $_SESSION["current_question_answered"] = false;
+    $_SESSION["question_start_time"] = time(); // 🔥
 }
 
 if (!isset($_SESSION["score"])) {
     $_SESSION["score"] = 0;
 }
 
-// Initialisation des vies (3 par défaut)
 if (!isset($_SESSION["lives"])) {
     $_SESSION["lives"] = 3;
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
