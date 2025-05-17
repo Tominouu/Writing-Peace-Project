@@ -1,0 +1,140 @@
+.multiplayer-container {
+    padding: 2rem;
+    text-align: center;
+}
+
+.multiplayer-options {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 2rem;
+    gap: 2rem;
+}
+
+.create-room, .join-room {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 45%;
+}
+
+.create-button, .join-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    margin-top: 1rem;
+    transition: background-color 0.3s;
+}
+
+.create-button:hover, .join-button:hover {
+    background-color: #0056b3;
+}
+
+input[name="room_code"] {
+    padding: 0.8rem;
+    font-size: 1.2rem;
+    text-align: center;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    width: 200px;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+}
+
+.error-message {
+    color: #dc3545;
+    margin: 1rem 0;
+    padding: 0.5rem;
+    background-color: #f8d7da;
+    border-radius: 5px;
+}
+
+/* Styles pour game.php */
+.game-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 1rem;
+}
+
+.player-info {
+    text-align: center;
+    background: #fff;
+    padding: 1rem;
+    border-radius: 8px;
+    min-width: 150px;
+}
+
+.vs {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.question-counter {
+    text-align: center;
+    font-size: 1.2rem;
+    margin: 1rem 0;
+}
+
+.waiting-screen {
+    text-align: center;
+    padding: 2rem;
+}
+
+.game-container {
+    padding: 2rem;
+    text-align: center;
+}
+
+.answers-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-top: 2rem;
+    padding: 0 2rem;
+}
+
+.answer-button {
+    background-color: #f8f9fa;
+    border: 2px solid #dee2e6;
+    padding: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: all 0.3s;
+}
+
+.answer-button:hover {
+    background-color: #e9ecef;
+    border-color: #adb5bd;
+}
+
+.game-over {
+    text-align: center;
+    padding: 2rem;
+}
+
+.final-scores {
+    margin: 2rem 0;
+    font-size: 1.2rem;
+}
+
+.new-game-button {
+    display: inline-block;
+    background-color: #28a745;
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-top: 1rem;
+    transition: background-color 0.3s;
+}
+
+.new-game-button:hover {
+    background-color: #218838;
+}
