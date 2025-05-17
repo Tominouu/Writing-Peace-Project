@@ -110,6 +110,20 @@ input[name="room_code"] {
     text-align: center;
 }
 
+.question {
+    background-color: #ffffff;
+    color: #3e67ab;
+    padding: 1vw;
+    border-radius: 1vw;
+    text-align: center;
+    margin: 1vw 0 2vw 0;
+    font-size: 1.5vw;
+    font-weight: bold;
+    box-shadow: 0 0.2vw 0.5vw rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 1;
+}
+
 .answers-container {
     width: 32vw;
 }
@@ -122,28 +136,28 @@ input[name="room_code"] {
 
 .answer-button {
     width: 100%;
-    padding: 1.5vw 0.1vw;
-    background-color: inherit;
+    padding: 1.5vw;
+    background-color: #3e67ab;
     border: #ffffff solid 0.3vw;
     border-radius: 0.8vw;
     color: #ffffff;
     font-size: 1.8vw;
     margin-bottom: 1vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: all 0.3s ease;
 }
 
 .answer-button:hover {
-    background-color: rgba(255, 255, 255, 0.164);
+    background-color: #ffffff;
+    color: #3e67ab;
+    border-color: #3e67ab;
 }
 
 .timer {
     font-size: 2vw;
-    color: #3e67ab;
-    margin: 0 0 -0.2vw 0;
+    color: #ffffff;
+    margin: 1vw 0;
+    font-weight: bold;
 }
 
 .game-over {
