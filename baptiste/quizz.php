@@ -212,14 +212,25 @@ $game_over = ($_SESSION["lives"] <= 0);
     const overlay = document.getElementById('popupOverlay');
     const closeBtn = document.getElementById('closePopup');
 
+    // Désactiver le bouton au début
+    openBtn.style.pointerEvents = 'none';
+    openBtn.style.opacity = '0.5';
+
+    // Fonction pour activer le bouton
+    const enableHelpButton = () => {
+        openBtn.style.pointerEvents = 'auto';
+        openBtn.style.opacity = '1';
+    };
+
     openBtn.addEventListener('click', () => overlay.style.display = 'flex');
     closeBtn.addEventListener('click', () => overlay.style.display = 'none');
 
-    // Masquer les boutons après clic
+    // Masquer les boutons après clic et activer le bouton d'aide
     document.querySelectorAll('.answer').forEach(button => {
         button.addEventListener('click', () => {
             document.querySelectorAll('.answer').forEach(btn => btn.classList.add('hidden'));
             clearInterval(timer); // stop timer si réponse donnée
+            enableHelpButton(); // Activer le bouton d'aide après réponse
         });
     });
 
@@ -233,6 +244,7 @@ $game_over = ($_SESSION["lives"] <= 0);
         if (chrono) chrono.textContent = timeLeft;
         if (timeLeft <= 0) {
             clearInterval(timer);
+            enableHelpButton(); // Activer le bouton d'aide quand le timer atteint zéro
             // Empêche double envoi
             if (!document.querySelector('button[name="next_question"]')) {
                 const input = document.createElement("input");
