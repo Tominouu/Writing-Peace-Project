@@ -113,7 +113,7 @@ $game_over = ($_SESSION["lives"] <= 0);
 <body>
     <div class="left-section">
         <div class="logo-container">
-            <a href="index.html">
+            <a href="index.php">
                 <img src="../assets/img/logo.png" alt="Logo Peace Words" class="logo">
             </a>
         </div>
