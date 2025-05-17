@@ -118,6 +118,16 @@ if (!isset($_SESSION["lives"])) {
                 </a>
             </div>
         </header>
+        <script>
+        let timeLeft = 10;
+        const chrono = document.querySelector('.right h4');
+        const timer = setInterval(() => {
+            timeLeft--;
+            if (chrono) chrono.textContent = timeLeft;
+            if (timeLeft <= 0) clearInterval(timer);
+        }, 1000);
+        </script>
+
         <main>
             <div class="top">
                 <div class="container-Txt">
