@@ -126,7 +126,7 @@ if ($gameInfo['game_status'] === 'in_progress') {
     </header>
     <main class="multiplayer-container">
         <div class="container-Txt">
-            <H1><?php $room_code ?></H1>
+            <H1><strong><?= htmlspecialchars($room_code) ?></strong></H1>
         </div>
         <div class="multiplayer-options">
             <div class="game-info">
@@ -163,9 +163,9 @@ if ($gameInfo['game_status'] === 'in_progress') {
                             }, 1000);
                         </script>
                     <?php else: ?>
-                        <h2>En attente d'un joueur...</h2>
-                        <p>Code de la salle : <strong><?= htmlspecialchars($room_code) ?></strong></p>
-                        <p>Partagez ce code pour jouer avec un autre joueur</p>
+                        <h2>Waiting for a player...</h2>
+                        <p>Code of the room : <strong><?= htmlspecialchars($room_code) ?></strong></p>
+                        <p>Share the code with another player</p>
                     <?php endif; ?>
                 </div>
 
