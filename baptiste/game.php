@@ -3,7 +3,7 @@ session_start();
 require_once "../config.php";
 
 if (!isset($_SESSION['user_id']) || !isset($_GET['code'])) {
-    header("Location: /baptiste/multiplayer.php");
+    header("Location: /baptiste/multiplayer-new.php");
     exit();
 }
 
@@ -16,7 +16,7 @@ $stmt->execute([$room_code, $user_id, $user_id]);
 $room = $stmt->fetch();
 
 if (!$room) {
-    header("Location: /baptiste/multiplayer.php");
+    header("Location: /baptiste/multiplayer-new.php");
     exit();
 }
 
@@ -179,7 +179,7 @@ if ($gameInfo['game_status'] === 'in_progress') {
                         }
                         ?>
                     </h3>
-                    <a href="multiplayer.php" class="new-game-button">New party</a>
+                    <a href="multiplayer-new.php" class="new-game-button">New party</a>
                 </div>
 
             <?php else: ?>
