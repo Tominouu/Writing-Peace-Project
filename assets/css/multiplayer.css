@@ -99,12 +99,14 @@ input[name="room_code"] {
 .player-info h3 {
     word-wrap: break-word; 
     overflow-wrap: break-word; 
-    white-space: normal; 
+    white-space: normal;
+    color: black;
 
 }
 .player-info p {
     font-weight: 600;
     font-size: 0.9vw;
+    color: black;
 }
 .vs {
     font-size: 1.5vw;
