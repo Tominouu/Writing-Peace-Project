@@ -67,7 +67,7 @@ $rank = $rankStmt->fetchColumn();
                     <a href="/baptiste/quizz.php" style="text-decoration: none;">
                         <button class="Play"><h1>PLAY</h1></button>
                     </a>
-                    <a href="/baptiste/multiplayer.php" style="text-decoration: none;">
+                    <a href="/baptiste/multiplayer-new.php" style="text-decoration: none;">
                         <button class="Play"><h1>1V1</h1></button>
                     </a>
                 </div>
