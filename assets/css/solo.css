@@ -13,7 +13,10 @@
 main .top{
     width: 32vw;
     height: 100%;
-    max-height: 15vw;
+    max-height: 45vh;
+    display: flex;
+    align-items: end;
+    flex-direction: column;
 }
 main .container-Txt {
     width: 100%;
@@ -35,6 +38,24 @@ main h1 {
     font-size: 2.2vw !important;
     color: #ffffff;
     text-align: center;
+}
+.container-score{
+    background-color: #3e67ab;
+    width: fit-content;
+    min-width: 7vw;
+    border-radius: 0.2vw; 
+    display: flex;  
+    align-items: center;
+    justify-content: center;
+    padding: 0.5vw 1vw;
+    color: #ffffff;
+    margin-bottom: 0.5vw;
+}
+.container-score h3 {
+    font-size: 1.5vw;
+    color: #ffffff;
+    font-weight: 600;
+    
 }
 .container-Txt {
     position: relative;
