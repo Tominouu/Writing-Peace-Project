@@ -1,21 +1,41 @@
 .multiplayer-container {
-    padding: 2rem;
+    padding: 2vw;
     text-align: center;
+    height: 70vh;
+    margin-bottom: 15vh;
 }
 
 .multiplayer-options {
     display: flex;
-    justify-content: space-around;
-    margin-top: 2rem;
-    gap: 2rem;
+    justify-content: space-between;
+    flex-direction: row;
+    margin-top: 1vw;
+    gap: 1vw;
+    width: 32vw;
+    
+    
+}
+.container-Txt {
+    width: 32vw !important;
+    background-color: white;
+    border-radius: 1.5vw;
+    font-size: 1vw !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container-Txt h1 {
+    font-size: 2.6vw !important;
+    color: #3e67ab;
+    text-align: center;
 }
 
 .create-room, .join-room {
     background: #fff;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    width: 45%;
+    padding: 2vw 2vw;
+    border-radius: 1vw;
+    height: 10vw;
 }
 
 .create-button, .join-button {
@@ -37,14 +57,14 @@
 }
 
 input[name="room_code"] {
-    padding: 0.8rem;
-    font-size: 1.2rem;
+    padding: 0.8vw;
+    font-size: 1vw;
     text-align: center;
-    border: 2px solid #ddd;
-    border-radius: 5px;
-    width: 200px;
-    margin-bottom: 1rem;
+    border: 0.2vw solid #ddd;
+    border-radius: 0.5vw;
+    width: 10vw;
     text-transform: uppercase;
+
 }
 
 .error-message {
@@ -58,29 +78,49 @@ input[name="room_code"] {
 /* Styles pour game.php */
 .game-info {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     gap: 2rem;
     margin-bottom: 1rem;
+    max-width: 100%;
 }
 
 .player-info {
     text-align: center;
-    background: #4a90e2;
-    padding: 1rem;
-    border-radius: 8px;
-    min-width: 150px;
+    background: #fff;
+    padding: 1vw 2vw;
+    border-radius: 1vw;
+    height: 10vw;
+    max-width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1vw;
+    
 }
+.player-info h3 {
+    word-wrap: break-word; /* pour couper les mots trop longs */
+    overflow-wrap: break-word; /* alternative plus moderne */
+    white-space: normal; /* s'assurer que le texte a le droit de se casser */
 
+}
+.player-info p {
+    font-weight: 600;
+}
 .vs {
-    font-size: 1.5rem;
+    font-size: 1.5vw;
     font-weight: bold;
+    color: #ffffff;
 }
 
 .question-counter {
     text-align: center;
-    font-size: 1.2rem;
+    font-size: 1.2vw;
     margin: 1rem 0;
+    color: #ffffff;
+    justify-self: start;
+
+
 }
 
 .waiting-screen {
@@ -193,4 +233,24 @@ input[name="room_code"] {
     background-color: #ffffff;
     color: #3e67ab;
     border: 0.2vw solid #3e67ab;
+}
+.Play-mul {
+    position: relative;
+    right: auto;
+    top: 2vw;
+    width: 9vw;
+    height: 4vw;
+    margin: 0 auto;
+    display: block;
+    cursor: pointer;
+    background-color: #3e67ab;
+    border: 0.3vw solid #ffffff;
+    border-radius: 0.5vw;
+}
+.Play-mul:hover { /* Change la couleur */
+    transform: scale(0.95); /* Agrandit légèrement */
+    transition: all 0.1s ease;
+}
+.Play-mul h1{
+    font-size: 1.5vw !important;
 }

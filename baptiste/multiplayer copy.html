@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/css/all.css">
+    <link rel="stylesheet" href="../assets/css/index.css">
+    <link rel="stylesheet" href="../assets/css/multiplayer.css">
+    <title>Mode Multijoueur - Writing Peace</title>
+</head>
+<body>
+    <div class="left-section">
+        <div class="logo-container">
+            <a href="index.php">
+                <img src="../assets/img/logo.png" alt="Logo Peace Words" class="logo">
+            </a>
+        </div>
+    </div>
+
+    <div class="right-section">
+        <header>
+            <img src="../assets/img/player.png" alt="Logo Peace Words">
+            <h3><?= htmlspecialchars($user['username']) ?></h3>
+        </header>
+
+        <main class="multiplayer-container">
+            <div class="container-Txt">
+                <H1>1 vs 1</H1>
+            </div>
+            <div class="multiplayer-options">
+                <div class="create-room">
+                    <h2 style="color:#3e67ab; margin-bottom: 1.2vw;">Create a party</h2>
+
+                    <form method="POST">
+                        <button type="submit" name="create_room" style="text-decoration: none;" class="Play-mul"><h1>Create</h1></button>
+                    </form>
+                </div>
+
+                <div class="join-room">
+                    <form method="POST">
+                        <input type="text" name="room_code" placeholder="Entrez le code de la room" maxlength="6" required>
+                        <button type="submit" name="join_room" style="text-decoration: none;" class="Play-mul"><h1>Join</h1></button>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
