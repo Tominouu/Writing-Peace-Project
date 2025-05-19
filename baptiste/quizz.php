@@ -260,5 +260,17 @@ $game_over = ($_SESSION["lives"] <= 0);
         }
     }, 1000);
     </script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const lines = document.querySelectorAll('.line');
+        const message = document.querySelector('.message');
+        const nextButton = document.querySelector('.next-question');
+
+        if (message || nextButton) {
+            lines.forEach(line => line.style.display = 'none');
+        }
+    });
+    </script>
+
 </body>
 </html>
