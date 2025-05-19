@@ -134,9 +134,11 @@ $game_over = ($_SESSION["lives"] <= 0);
 
         <main>
             <?php if ($game_over): ?>
-                <div class="game-over">
-                    <h1>💀 Game over!</h1>
-                    <p>Score : <strong><?= $_SESSION["score"] ?></strong></p>
+                <div class="game-over-container">
+                    <div class="game-over">
+                        <h1>💀 Game over!</h1>
+                        <p>Score : <strong><?= $_SESSION["score"] ?></strong></p>
+                    </div>
                     <form method="POST">
                         <button type="submit" name="restart_game" class="restart-button">Retry</button>
                     </form>

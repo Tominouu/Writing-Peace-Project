@@ -1,0 +1,46 @@
+
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/css/all.css">
+    <link rel="stylesheet" href="../assets/css/index.css">
+    <link rel="stylesheet" href="../assets/css/solo.css">
+    <link rel="stylesheet" href="../assets/css/quiz.css">
+    <title>Writing Peace</title>
+</head>
+<body>
+    <div class="left-section">
+        <div class="logo-container">
+            <a href="index.php">
+                <img src="../assets/img/logo.png" alt="Logo Peace Words" class="logo">
+            </a>
+        </div>
+    </div>
+
+    <div class="right-section">
+        <header>
+            <img src="../assets/img/player.png" alt="Logo Peace Words" >
+            <h3><?= htmlspecialchars($user['username']) ?></h3>
+            <div class="connect">
+                <a href="login.php"><button class="login"><h3>Log in</h3></button></a>
+                <a href="signup.php"><button class="signup"><h3>Sign up</h3></button></a>
+            </div>
+        </header>
+
+        <main>
+            <div class="game-over-container">
+                <div class="game-over">
+                    <h1>💀 Game over!</h1>
+                    <p>Score : <strong><?= $_SESSION["score"] ?></strong></p>
+                </div>
+                <form method="POST">
+                    <button type="submit" name="restart_game" class="restart-button">Retry</button>
+                </form>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

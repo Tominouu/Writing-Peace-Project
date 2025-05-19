@@ -80,8 +80,6 @@ input[name="room_code"] {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 2rem;
-    margin-bottom: 1rem;
     max-width: 100%;
 }
 
@@ -99,13 +97,14 @@ input[name="room_code"] {
     
 }
 .player-info h3 {
-    word-wrap: break-word; /* pour couper les mots trop longs */
-    overflow-wrap: break-word; /* alternative plus moderne */
-    white-space: normal; /* s'assurer que le texte a le droit de se casser */
+    word-wrap: break-word; 
+    overflow-wrap: break-word; 
+    white-space: normal; 
 
 }
 .player-info p {
     font-weight: 600;
+    font-size: 0.9vw;
 }
 .vs {
     font-size: 1.5vw;
