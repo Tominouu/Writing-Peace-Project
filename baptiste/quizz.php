@@ -202,7 +202,7 @@ $game_over = ($_SESSION["lives"] <= 0);
                 <p><?= nl2br(htmlspecialchars($_SESSION['question']['histoire'])) ?></p>
 
                 <?php if (!empty($_SESSION['question']['image_ecriture'])): ?>
-                    <img src="<?= htmlspecialchars($_SESSION['question']['image_ecriture']) ?>" alt="Alphabet" style="max-width: 100%; margin-top: 15px;">
+                    <img src="<?= htmlspecialchars($_SESSION['question']['image_ecriture']) ?>" alt="Alphabet" style="max-width: 50%; max-height: auto;  margin-top: 15px;">
                 <?php endif; ?>
             </div>
         </div>
