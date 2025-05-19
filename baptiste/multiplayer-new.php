@@ -35,7 +35,7 @@ if (isset($_POST['create_room'])) {
     $stmt = $pdo->prepare("INSERT INTO rooms (code, player1_id) VALUES (?, ?)");
     if ($stmt->execute([$code, $user_id])) {
         $_SESSION['room_code'] = $code;
-        header("Location: game.php?code=" . $code);
+        header("Location: game-copy.php?code=" . $code);
         exit();
     }
 }
