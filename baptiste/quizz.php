@@ -126,10 +126,6 @@ $game_over = ($_SESSION["lives"] <= 0);
         <header>
             <img src="../assets/img/player.png" alt="Logo Peace Words" >
             <h3><?= htmlspecialchars($user['username']) ?></h3>
-            <div class="connect">
-                <a href="login.php"><button class="login"><h3>Log in</h3></button></a>
-                <a href="signup.php"><button class="signup"><h3>Sign up</h3></button></a>
-            </div>
         </header>
 
         <main>
@@ -163,12 +159,10 @@ $game_over = ($_SESSION["lives"] <= 0);
                             <img src="../assets/img/chrono bleu.png" alt="Chrono">
                         </div>
                     </div>
-                    <?php if (isset($message)): ?>
-                        <div class="message"><?= $message ?></div>
-                    <?php endif; ?>
-                </div>
 
+                </div>
                 <div class="bottom">
+
                     <a href="settings.html"><img class="icons-nut" src="../assets/img/icons-nut.png" alt=""></a>
                     <form method="POST" class="container-answers" id="quiz-form">
                         <input type="hidden" name="correct_answer" value="<?= htmlspecialchars($_SESSION['question']['correct']) ?>">
@@ -186,6 +180,9 @@ $game_over = ($_SESSION["lives"] <= 0);
                                 </button>
                             <?php endfor; ?>
                         </div>
+                    <?php if (isset($message)): ?>
+                        <div class="message"><?= $message ?></div>
+                    <?php endif; ?>
                         <?php if ($_SESSION['current_question_answered']): ?>
                             <button type="submit" name="next_question" class="next-question">Next question</button>
                         <?php endif; ?>
@@ -259,5 +256,17 @@ $game_over = ($_SESSION["lives"] <= 0);
         }
     }, 1000);
     </script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const lines = document.querySelectorAll('.line');
+        const message = document.querySelector('.message');
+        const nextButton = document.querySelector('.next-question');
+
+        if (message || nextButton) {
+            lines.forEach(line => line.style.display = 'none');
+        }
+    });
+    </script>
+
 </body>
 </html>
