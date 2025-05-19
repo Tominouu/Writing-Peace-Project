@@ -126,10 +126,6 @@ $game_over = ($_SESSION["lives"] <= 0);
         <header>
             <img src="../assets/img/player.png" alt="Logo Peace Words" >
             <h3><?= htmlspecialchars($user['username']) ?></h3>
-            <div class="connect">
-                <a href="login.php"><button class="login"><h3>Log in</h3></button></a>
-                <a href="signup.php"><button class="signup"><h3>Sign up</h3></button></a>
-            </div>
         </header>
 
         <main>
