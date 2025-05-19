@@ -14,6 +14,15 @@ $user = $stmt->fetch();
 // Récupération des 4 meilleurs joueurs
 $rankingStmt = $pdo->query("SELECT username, points FROM users ORDER BY points DESC LIMIT 3");
 $topPlayers = $rankingStmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+$rankStmt = $pdo->prepare("
+    SELECT COUNT(*) + 1 AS rank 
+    FROM users 
+    WHERE points > (SELECT points FROM users WHERE id = ?)
+");
+$rankStmt->execute([$_SESSION['user_id']]);
+$rank = $rankStmt->fetchColumn();
 ?>
 
 <!DOCTYPE html>
@@ -86,9 +95,12 @@ $topPlayers = $rankingStmt->fetchAll(PDO::FETCH_ASSOC);
                         </div>
                         <div class="actual-Player">
                             <?php if (!empty($topPlayers)): ?>
-                                <h3>#1</h3>
-                                <img class="Player-img" src="../assets/img/player.png" alt="">
-                                <p class="pseudo"><?= htmlspecialchars($topPlayers[0]['username']) ?></p>
+                                <div class="actual-Player">
+                                    <h3>#<?= $rank ?></h3>
+                                    <img class="Player-img" src="../assets/img/player.png" alt="">
+                                    <p class="pseudo"><?= htmlspecialchars($user['username']) ?></p>
+                                    <p class="points"><?= htmlspecialchars($user['points']) ?> pts</p>
+                                </div>
                             <?php endif; ?>
                         </div>
                     </div>
