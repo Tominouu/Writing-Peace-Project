@@ -76,7 +76,7 @@ $topPlayers = $rankingStmt->fetchAll(PDO::FETCH_ASSOC);
                     </div>
                     <div class="bottom">
                         <div class="other-Player">
-                            <?php for ($i = 1; $i < count($topPlayers); $i++): ?>
+                            <?php for ($i = 0; $i < count($topPlayers); $i++): ?>
                             <div class="other-Player-1">
                                 <h3>#<?= $i + 1 ?></h3>
                                 <img class="Player-img" src="../assets/img/player.png" alt="">
