@@ -94,14 +94,9 @@ $rank = $rankStmt->fetchColumn();
                             <?php endfor; ?>
                         </div>
                         <div class="actual-Player">
-                            <?php if (!empty($topPlayers)): ?>
-                                <div class="actual-Player">
-                                    <h3>#<?= $rank ?></h3>
-                                    <img class="Player-img" src="../assets/img/player.png" alt="">
-                                    <p class="pseudo"><?= htmlspecialchars($user['username']) ?></p>
-                                    <p class="points"><?= htmlspecialchars($user['points']) ?> pts</p>
-                                </div>
-                            <?php endif; ?>
+                            <h3>#<?= $rank ?></h3>
+                            <img class="Player-img" src="../assets/img/player.png" alt="">
+                            <p class="pseudo"><?= htmlspecialchars($user['username']) ?></p>
                         </div>
                     </div>
                 </div>
